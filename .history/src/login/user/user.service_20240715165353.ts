@@ -10,7 +10,6 @@ import * as path from 'path';
 // import { SMB2 } from 'smb2';
 const smb2 = require('smb2');
 import * as fsPromises from 'fs/promises';
-import { join } from 'path';
 
 @Injectable()
 export class UserService {

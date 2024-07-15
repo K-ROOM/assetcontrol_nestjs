@@ -15,7 +15,7 @@ async function bootstrap() {
     optionsSuccessStatus: 204,
   }
   app.enableCors(corsOptions);
-  app.useStaticAssets(path.resolve(process.cwd(), "file:/172.16.58.231/HRSystem/Photos/"));
+  // app.useStaticAssets(path.resolve(process.cwd(), "file:/172.16.58.231/HRSystem/Photos/"));
   await app.listen(port);
 }
 bootstrap();

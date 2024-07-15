@@ -10,7 +10,6 @@ import * as path from 'path';
 // import { SMB2 } from 'smb2';
 const smb2 = require('smb2');
 import * as fsPromises from 'fs/promises';
-import { join } from 'path';
 
 @Injectable()
 export class UserService {
@@ -85,19 +84,7 @@ export class UserService {
     //   throw new Error('Failed to fetch image from SMB.');
     // }
 
-    try {
-      // ระบุที่อยู่ของไฟล์รูปภาพใน Docker container
-      const filePath = join(__dirname, '..', 'public', 'EmployeePhotos', `${filename}.jpg`);
-
-      // ดึงข้อมูลรูปภาพจาก path
-      const fileData = await fsPromises.readFile(filePath);
-
-      // คืนข้อมูลรูปภาพในรูปแบบ Buffer
-      return fileData;
-    } catch (error) {
-      console.error('Error fetching image from path:', error.message);
-      throw new Error('Failed to fetch image from path.');
-    }
+    
   }
 }
 
