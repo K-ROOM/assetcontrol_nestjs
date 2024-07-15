@@ -23,14 +23,10 @@ import { MasterAntivirusModule } from "./master/master_antivirus/master_antiviru
 import { MulterModule } from "@nestjs/platform-express";
 import { diskStorage } from "multer";
 import { MasterAnnualstatusModule } from "./master/master_annualstatus/master_annualstatus.module";
-import { join } from "path";
-import { ServeStaticModule } from "@nestjs/serve-static";
 
 @Module({
   imports: [
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'EmployeePhotos'),
-    }),
+    
     ConfigModule.forRoot({
       isGlobal: true,
     }),
