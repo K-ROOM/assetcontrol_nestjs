@@ -90,7 +90,7 @@ export class UserService {
       console.log('filePath : ' + filePath);
       // ดึงข้อมูลรูปภาพจาก path
       const fileData = await fsPromises.readFile(filePath);
-      console.log('fileData : ' + fileData);
+      console.log
       // คืนข้อมูลรูปภาพในรูปแบบ Buffer
       return fileData;
     } catch (error) {
