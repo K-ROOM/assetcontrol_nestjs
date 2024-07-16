@@ -87,7 +87,7 @@ export class UserService {
 
     try {
       // ระบุที่อยู่ของไฟล์รูปภาพใน Docker container
-      const filePath = join(__dirname, '..', 'EmployeePhotos', `${filename}.jpg`);
+      const filePath = join(__dirname, '.', 'EmployeePhotos', `${filename}.jpg`);
 
       // ดึงข้อมูลรูปภาพจาก path
       const fileData = await fsPromises.readFile(filePath);
