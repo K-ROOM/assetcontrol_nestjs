@@ -84,7 +84,7 @@ export class UserService {
     //   console.error('Error fetching image from SMB:', error.message);
     //   throw new Error('Failed to fetch image from SMB.');
     // }
-    console.log('path a ai sus ' + __dirname);
+    console.log('' + __dirname);
     try {
       // ระบุที่อยู่ของไฟล์รูปภาพใน Docker container
       const filePath = join(__dirname, '..', 'EmployeePhotos', `${filename}.jpg`);
