@@ -10,7 +10,6 @@ import * as path from 'path';
 // import { SMB2 } from 'smb2';
 const smb2 = require('smb2');
 import * as fsPromises from 'fs/promises';
-import { join } from 'path';
 
 @Injectable()
 export class UserService {
@@ -60,43 +59,29 @@ export class UserService {
   }
 
   async readImageFromSharedDrive(filename: string): Promise<Buffer> {
-    // try {
-    //   // ตั้งค่าการเชื่อมต่อกับ SMB
-    //   const smbClient = new smb2({
-    //     share: '\\\\172.16.58.231\\HRSystem',
-    //     domain: process.env.CROSS_DB_HOST,
-    //     username: process.env.CROSS_DB_USERNAME,
-    //     password: process.env.CROSS_DB_PASSWORD,
-    //   });
-
-    //   // ระบุที่อยู่ของไฟล์รูปภาพใน SMB
-    //   const filePath = '//172.16.58.231//HRSystem//Photos/' + filename + '.jpg';
-
-    //   // ดึงข้อมูลรูปภาพจาก SMB
-    //   const fileData = await fsPromises.readFile(filePath, { encoding: null });
-                                    
-    //   // ปิดการเชื่อมต่อกับ SMB
-    //   smbClient.close();
-
-    //   // คืนข้อมูลรูปภาพในรูปแบบ Buffer
-    //   return fileData;
-    // } catch (error) {
-    //   console.error('Error fetching image from SMB:', error.message);
-    //   throw new Error('Failed to fetch image from SMB.');
-    // }
-
     try {
-      // ระบุที่อยู่ของไฟล์รูปภาพใน Docker container
-      const filePath = join(__dirname, '..', 'EmployeePhotos', `${filename}.jpg`);
+      // ตั้งค่าการเชื่อมต่อกับ SMB
+      const smbClient = new smb2({
+        share: '\\\\172.16.58.231\\HRSystem',
+        domain: process.env.CROSS_DB_HOST,
+        username: process.env.CROSS_DB_USERNAME,
+        password: process.env.CROSS_DB_PASSWORD,
+      });
 
-      // ดึงข้อมูลรูปภาพจาก path
-      const fileData = await fsPromises.readFile(filePath);
+      // ระบุที่อยู่ของไฟล์รูปภาพใน SMB
+      const filePath = '//172.16.58.231//HRSystem//Photos/' + filename + '.jpg';
+
+      // ดึงข้อมูลรูปภาพจาก SMB
+      const fileData = await fsPromises.readFile(filePath, { encoding: null });
+                                    
+      // ปิดการเชื่อมต่อกับ SMB
+      smbClient.close();
 
       // คืนข้อมูลรูปภาพในรูปแบบ Buffer
       return fileData;
     } catch (error) {
-      console.error('Error fetching image from path:', error.message);
-      throw new Error('Failed to fetch image from path.');
+      console.error('Error fetching image from SMB:', error.message);
+      throw new Error('Failed to fetch image from SMB.');
     }
   }
 }
