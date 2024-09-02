@@ -115,36 +115,36 @@ export class AssetHeaderService {
 	  (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Projector' AND Status = 'In Stock') AS ProjectorInStockCount,
 	  ((SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Projector' AND Status = 'Active') + (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Projector' AND Status = 'In Stock')) AS TotalProjectorCount,
 	  ((SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Projector' AND Status = 'Active') + 
-    (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Projector' AND Status = 'In Stock')) * 100.0 / 
-    (SELECT COUNT(*) AS TotalAssets FROM (SELECT Status FROM tblAssetMain UNION ALL SELECT Status FROM tblSpareParts) AS combinedTotal) AS ProjectorPercentage,
+      (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Projector' AND Status = 'In Stock')) * 100.0 / 
+      (SELECT COUNT(*) AS TotalAssets FROM (SELECT Status FROM tblAssetMain UNION ALL SELECT Status FROM tblSpareParts) AS combinedTotal) AS ProjectorPercentage,
 	  (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Storage' AND Status = 'Active') AS StorageActiveCount,
 	  (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Storage' AND Status = 'In Stock') AS StorageInStockCount,
 	  ((SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Storage' AND Status = 'Active') + (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Storage' AND Status = 'In Stock')) AS TotalStorageCount,
 	  ((SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Storage' AND Status = 'Active') + 
-    (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Storage' AND Status = 'In Stock')) * 100.0 / 
-    (SELECT COUNT(*) AS TotalAssets FROM (SELECT Status FROM tblAssetMain UNION ALL SELECT Status FROM tblSpareParts) AS combinedTotal) AS StoragePercentage,
+      (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Storage' AND Status = 'In Stock')) * 100.0 / 
+      (SELECT COUNT(*) AS TotalAssets FROM (SELECT Status FROM tblAssetMain UNION ALL SELECT Status FROM tblSpareParts) AS combinedTotal) AS StoragePercentage,
 	  (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'UPS' AND Status = 'Active') AS UPSActiveCount,
 	  (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'UPS' AND Status = 'In Stock') AS UPSInStockCount,
 	  ((SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'UPS' AND Status = 'Active') + (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'UPS' AND Status = 'In Stock')) AS TotalUPSCount,
 	  ((SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'UPS' AND Status = 'Active') + 
-    (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'UPS' AND Status = 'In Stock')) * 100.0 / 
-    (SELECT COUNT(*) AS TotalAssets FROM (SELECT Status FROM tblAssetMain UNION ALL SELECT Status FROM tblSpareParts) AS combinedTotal) AS UPSPercentage,
+      (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'UPS' AND Status = 'In Stock')) * 100.0 / 
+      (SELECT COUNT(*) AS TotalAssets FROM (SELECT Status FROM tblAssetMain UNION ALL SELECT Status FROM tblSpareParts) AS combinedTotal) AS UPSPercentage,
 	  (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Other' AND Status = 'Active') AS OtherActiveCount,
 	  (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Other' AND Status = 'In Stock') AS OtherInStockCount,
 	  ((SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Other' AND Status = 'Active') + (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Other' AND Status = 'In Stock')) AS TotalOtherCount,
 	  ((SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Other' AND Status = 'Active') + 
-    (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Other' AND Status = 'In Stock')) * 100.0 / 
-    (SELECT COUNT(*) AS TotalAssets FROM (SELECT Status FROM tblAssetMain UNION ALL SELECT Status FROM tblSpareParts) AS combinedTotal) AS OtherPercentage,
+      (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Other' AND Status = 'In Stock')) * 100.0 / 
+      (SELECT COUNT(*) AS TotalAssets FROM (SELECT Status FROM tblAssetMain UNION ALL SELECT Status FROM tblSpareParts) AS combinedTotal) AS OtherPercentage,
 	  (SELECT COUNT(*) FROM tblSpareParts WHERE Category = 'Spare Parts' AND Status = 'Active') AS SparePartsActiveCount,
 	  (SELECT COUNT(*) FROM tblSpareParts WHERE Category = 'Spare Parts' AND Status = 'In Stock') AS SparePartsInStockCount,
 	  ((SELECT COUNT(*) FROM tblSpareParts WHERE Category = 'Spare Parts' AND Status = 'Active') + (SELECT COUNT(*) FROM tblSpareParts WHERE Category = 'Spare Parts' AND Status = 'In Stock')) AS TotalSpareCount,
 	  (((SELECT COUNT(*) FROM tblSpareParts WHERE Category = 'Spare Parts' AND Status = 'Active') + 
-    (SELECT COUNT(*) FROM tblSpareParts WHERE Category = 'Spare Parts' AND Status = 'In Stock')) * 100.0 / 
-    (SELECT COUNT(*) FROM (SELECT Status FROM tblAssetMain WHERE Status IN ('Active', 'In Stock') UNION ALL SELECT Status FROM tblSpareParts WHERE Status IN ('Active', 'In Stock')) AS combinedTotal)) AS SparePartsPercentageOfTotal,
+      (SELECT COUNT(*) FROM tblSpareParts WHERE Category = 'Spare Parts' AND Status = 'In Stock')) * 100.0 / 
+      (SELECT COUNT(*) FROM (SELECT Status FROM tblAssetMain WHERE Status IN ('Active', 'In Stock') UNION ALL SELECT Status FROM tblSpareParts WHERE Status IN ('Active', 'In Stock')) AS combinedTotal)) AS SparePartsPercentageOfTotal,
 	  (SELECT COUNT(*) FROM tblIPAddress_Status WHERE Status = 'Active') AS IPAddressActiveCount,
 	  (SELECT COUNT(*) FROM tblIPAddress_Status WHERE Status = 'Empty') AS IPAddressEmptyCount,
 	  (SELECT COUNT(*) FROM (SELECT Status FROM tblAssetMain WHERE Status = 'Active' UNION ALL SELECT Status FROM tblSpareParts WHERE Status = 'Active') AS combinedActive) AS TotalActive,
-    (SELECT COUNT(*) FROM (SELECT Status FROM tblAssetMain WHERE Status = 'In Stock' UNION ALL SELECT Status FROM tblSpareParts WHERE Status = 'In Stock') AS combinedInStock) AS TotalInStock,
+      (SELECT COUNT(*) FROM (SELECT Status FROM tblAssetMain WHERE Status = 'In Stock' UNION ALL SELECT Status FROM tblSpareParts WHERE Status = 'In Stock') AS combinedInStock) AS TotalInStock,
 	  (SELECT COUNT(*) FROM (SELECT Status FROM tblAssetMain WHERE Status IN ('Active', 'In Stock') UNION ALL SELECT Status FROM tblSpareParts WHERE Status IN ('Active', 'In Stock')) AS combinedTotal) AS TotalAssets`);
   }
 
