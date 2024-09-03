@@ -189,7 +189,8 @@ export class AssetHeaderService {
 
     (SELECT COUNT(*) FROM (SELECT Status FROM tblAssetMain WHERE Status = 'Active' UNION ALL SELECT Status FROM tblSpareParts WHERE Status = 'Active') AS combinedActive) AS TotalActive,
     (SELECT COUNT(*) FROM (SELECT Status FROM tblAssetMain WHERE Status = 'In Stock' UNION ALL SELECT Status FROM tblSpareParts WHERE Status = 'In Stock') AS combinedInStock) AS TotalInStock,
-    (SELECT TotalCount FROM TotalAssets) AS TotalAssets`);
+    (SELECT TotalCount FROM TotalAssets) AS TotalAssets;
+`);
   }
 
   findAllSelectCol(category: string) {

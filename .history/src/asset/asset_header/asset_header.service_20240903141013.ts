@@ -174,22 +174,23 @@ export class AssetHeaderService {
     (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Other' AND Status = 'Active') AS OtherActiveCount,
     (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Other' AND Status = 'In Stock') AS OtherInStockCount,
     ((SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Other' AND Status = 'Active') + 
-    (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Other' AND Status = 'In Stock')) AS TotalOtherCount,
+     (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Other' AND Status = 'In Stock')) AS TotalOtherCount,
     ((SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Other' AND Status = 'Active') + 
-    (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Other' AND Status = 'In Stock')) * 100.0 / 
+     (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Other' AND Status = 'In Stock')) * 100.0 / 
     (SELECT TotalCount FROM TotalAssets) AS OtherPercentage,
 
     (SELECT COUNT(*) FROM tblSpareParts WHERE Category = 'Spare Parts' AND Status = 'Active') AS SparePartsActiveCount,
     (SELECT COUNT(*) FROM tblSpareParts WHERE Category = 'Spare Parts' AND Status = 'In Stock') AS SparePartsInStockCount,
     ((SELECT COUNT(*) FROM tblSpareParts WHERE Category = 'Spare Parts' AND Status = 'Active') + 
-    (SELECT COUNT(*) FROM tblSpareParts WHERE Category = 'Spare Parts' AND Status = 'In Stock')) AS TotalSpareCount,
+     (SELECT COUNT(*) FROM tblSpareParts WHERE Category = 'Spare Parts' AND Status = 'In Stock')) AS TotalSpareCount,
     (((SELECT COUNT(*) FROM tblSpareParts WHERE Category = 'Spare Parts' AND Status = 'Active') + 
-    (SELECT COUNT(*) FROM tblSpareParts WHERE Category = 'Spare Parts' AND Status = 'In Stock')) * 100.0 / 
-    (SELECT TotalCount FROM TotalAssets)) AS SparePartsPercentageOfTotal,
+      (SELECT COUNT(*) FROM tblSpareParts WHERE Category = 'Spare Parts' AND Status = 'In Stock')) * 100.0 / 
+     (SELECT TotalCount FROM TotalAssets)) AS SparePartsPercentageOfTotal,
 
     (SELECT COUNT(*) FROM (SELECT Status FROM tblAssetMain WHERE Status = 'Active' UNION ALL SELECT Status FROM tblSpareParts WHERE Status = 'Active') AS combinedActive) AS TotalActive,
     (SELECT COUNT(*) FROM (SELECT Status FROM tblAssetMain WHERE Status = 'In Stock' UNION ALL SELECT Status FROM tblSpareParts WHERE Status = 'In Stock') AS combinedInStock) AS TotalInStock,
-    (SELECT TotalCount FROM TotalAssets) AS TotalAssets`);
+    (SELECT TotalCount FROM TotalAssets) AS TotalAssets;
+`);
   }
 
   findAllSelectCol(category: string) {

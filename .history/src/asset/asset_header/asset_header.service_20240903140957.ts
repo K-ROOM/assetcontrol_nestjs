@@ -134,62 +134,63 @@ export class AssetHeaderService {
     (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Storage' AND Status = 'Active') AS StorageActiveCount,
     (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Storage' AND Status = 'In Stock') AS StorageInStockCount,
     ((SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Storage' AND Status = 'Active') + 
-    (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Storage' AND Status = 'In Stock')) AS TotalStorageCount,
+     (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Storage' AND Status = 'In Stock')) AS TotalStorageCount,
     ((SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Storage' AND Status = 'Active') + 
-    (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Storage' AND Status = 'In Stock')) * 100.0 / 
+     (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Storage' AND Status = 'In Stock')) * 100.0 / 
     (SELECT TotalCount FROM TotalAssets) AS StoragePercentage,
 
     (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'UPS' AND Status = 'Active') AS UPSActiveCount,
     (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'UPS' AND Status = 'In Stock') AS UPSInStockCount,
     ((SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'UPS' AND Status = 'Active') + 
-    (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'UPS' AND Status = 'In Stock')) AS TotalUPSCount,
+     (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'UPS' AND Status = 'In Stock')) AS TotalUPSCount,
     ((SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'UPS' AND Status = 'Active') + 
-    (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'UPS' AND Status = 'In Stock')) * 100.0 / 
+     (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'UPS' AND Status = 'In Stock')) * 100.0 / 
     (SELECT TotalCount FROM TotalAssets) AS UPSPercentage,
 
-	  (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Label' AND Status = 'Active') AS LabelActiveCount,
+	(SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Label' AND Status = 'Active') AS LabelActiveCount,
     (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Label' AND Status = 'In Stock') AS LabelInStockCount,
     ((SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Label' AND Status = 'Active') + 
-    (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Label' AND Status = 'In Stock')) AS TotalLabelCount,
+     (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Label' AND Status = 'In Stock')) AS TotalLabelCount,
     ((SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Label' AND Status = 'Active') + 
-    (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Label' AND Status = 'In Stock')) * 100.0 / 
+     (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Label' AND Status = 'In Stock')) * 100.0 / 
     (SELECT TotalCount FROM TotalAssets) AS LabelPercentage,
 
-	  (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Server' AND Status = 'Active') AS ServerActiveCount,
+	(SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Server' AND Status = 'Active') AS ServerActiveCount,
     (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Server' AND Status = 'In Stock') AS ServerInStockCount,
     ((SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Server' AND Status = 'Active') + 
-    (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Server' AND Status = 'In Stock')) AS TotalServerCount,
+     (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Server' AND Status = 'In Stock')) AS TotalServerCount,
     ((SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Server' AND Status = 'Active') + 
-    (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Server' AND Status = 'In Stock')) * 100.0 / 
+     (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Server' AND Status = 'In Stock')) * 100.0 / 
     (SELECT TotalCount FROM TotalAssets) AS ServerPercentage,
 
-	  (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'IoT Instrument' AND Status = 'Active') AS IotActiveCount,
+	(SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'IoT Instrument' AND Status = 'Active') AS IotActiveCount,
     (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'IoT Instrument' AND Status = 'In Stock') AS IotInStockCount,
     ((SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'IoT Instrument' AND Status = 'Active') + 
-    (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'IoT Instrument' AND Status = 'In Stock')) AS TotalIotCount,
+     (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'IoT Instrument' AND Status = 'In Stock')) AS TotalIotCount,
     ((SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'IoT Instrument' AND Status = 'Active') + 
-    (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'IoT Instrument' AND Status = 'In Stock')) * 100.0 / 
+     (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'IoT Instrument' AND Status = 'In Stock')) * 100.0 / 
     (SELECT TotalCount FROM TotalAssets) AS IotPercentage,
 
     (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Other' AND Status = 'Active') AS OtherActiveCount,
     (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Other' AND Status = 'In Stock') AS OtherInStockCount,
     ((SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Other' AND Status = 'Active') + 
-    (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Other' AND Status = 'In Stock')) AS TotalOtherCount,
+     (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Other' AND Status = 'In Stock')) AS TotalOtherCount,
     ((SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Other' AND Status = 'Active') + 
-    (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Other' AND Status = 'In Stock')) * 100.0 / 
+     (SELECT COUNT(*) FROM tblAssetMain WHERE Category = 'Other' AND Status = 'In Stock')) * 100.0 / 
     (SELECT TotalCount FROM TotalAssets) AS OtherPercentage,
 
     (SELECT COUNT(*) FROM tblSpareParts WHERE Category = 'Spare Parts' AND Status = 'Active') AS SparePartsActiveCount,
     (SELECT COUNT(*) FROM tblSpareParts WHERE Category = 'Spare Parts' AND Status = 'In Stock') AS SparePartsInStockCount,
     ((SELECT COUNT(*) FROM tblSpareParts WHERE Category = 'Spare Parts' AND Status = 'Active') + 
-    (SELECT COUNT(*) FROM tblSpareParts WHERE Category = 'Spare Parts' AND Status = 'In Stock')) AS TotalSpareCount,
+     (SELECT COUNT(*) FROM tblSpareParts WHERE Category = 'Spare Parts' AND Status = 'In Stock')) AS TotalSpareCount,
     (((SELECT COUNT(*) FROM tblSpareParts WHERE Category = 'Spare Parts' AND Status = 'Active') + 
-    (SELECT COUNT(*) FROM tblSpareParts WHERE Category = 'Spare Parts' AND Status = 'In Stock')) * 100.0 / 
-    (SELECT TotalCount FROM TotalAssets)) AS SparePartsPercentageOfTotal,
+      (SELECT COUNT(*) FROM tblSpareParts WHERE Category = 'Spare Parts' AND Status = 'In Stock')) * 100.0 / 
+     (SELECT TotalCount FROM TotalAssets)) AS SparePartsPercentageOfTotal,
 
     (SELECT COUNT(*) FROM (SELECT Status FROM tblAssetMain WHERE Status = 'Active' UNION ALL SELECT Status FROM tblSpareParts WHERE Status = 'Active') AS combinedActive) AS TotalActive,
     (SELECT COUNT(*) FROM (SELECT Status FROM tblAssetMain WHERE Status = 'In Stock' UNION ALL SELECT Status FROM tblSpareParts WHERE Status = 'In Stock') AS combinedInStock) AS TotalInStock,
-    (SELECT TotalCount FROM TotalAssets) AS TotalAssets`);
+    (SELECT TotalCount FROM TotalAssets) AS TotalAssets;
+`);
   }
 
   findAllSelectCol(category: string) {
