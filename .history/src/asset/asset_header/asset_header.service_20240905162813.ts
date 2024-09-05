@@ -187,9 +187,6 @@ export class AssetHeaderService {
     (SELECT COUNT(*) FROM tblSpareParts WHERE Category = 'Spare Parts' AND Status = 'In Stock')) * 100.0 / 
     (SELECT TotalCount FROM TotalAssets)) AS SparePartsPercentageOfTotal,
 
-    (SELECT COUNT(*) FROM tblIPAddress_Status WHERE Status = 'Active') AS IPAddressActiveCount,
-	  (SELECT COUNT(*) FROM tblIPAddress_Status WHERE Status = 'Empty') AS IPAddressEmptyCount,
-
     (SELECT COUNT(*) FROM (SELECT Status FROM tblAssetMain WHERE Status = 'Active' UNION ALL SELECT Status FROM tblSpareParts WHERE Status = 'Active') AS combinedActive) AS TotalActive,
     (SELECT COUNT(*) FROM (SELECT Status FROM tblAssetMain WHERE Status = 'In Stock' UNION ALL SELECT Status FROM tblSpareParts WHERE Status = 'In Stock') AS combinedInStock) AS TotalInStock,
     (SELECT TotalCount FROM TotalAssets) AS TotalAssets`);
