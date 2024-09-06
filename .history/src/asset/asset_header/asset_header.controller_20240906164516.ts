@@ -75,8 +75,8 @@ export class AssetHeaderController {
     }
   }
 
-  @Get('/selectCol/:category')
-  findAllSelectCol(@Param('category') category: string) {
+  @Get('/selectCol/:category/:branchCode')
+  findAllSelectCol(@Param('category') category: string, @Param('branchCode') category: string) {
     return this.assetHeaderService.findAllSelectCol(category);
   }
 
