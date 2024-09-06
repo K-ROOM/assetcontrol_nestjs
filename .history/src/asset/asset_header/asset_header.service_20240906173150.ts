@@ -196,7 +196,7 @@ export class AssetHeaderService {
   }
 
   findAllSelectCol(category: string, branchCode: string) {
-    console.log(category + ' ' + branchCode);
+    console.log(category + ' ' + );
     return this.assetRepository.find({
       select: ['edp_No', 'fin_No', 'category', 'subCategory', 'status', 'firstCheck', 'lastCheck', 'inputUser', 'modifiedBy', 'branchCode', 'userName', 'annualCheckStatus'],
       where: { category: category, branchCode: branchCode },
