@@ -195,7 +195,7 @@ export class AssetHeaderService {
     (SELECT TotalCount FROM TotalAssets) AS TotalAssets`);
   }
 
-  findAllSelectCol(category: string) {
+  findAllSelectCol(category: string, branchCode: string) {
     return this.assetRepository.find({
       select: ['edp_No', 'fin_No', 'category', 'subCategory', 'status', 'firstCheck', 'lastCheck', 'inputUser', 'modifiedBy', 'branchCode', 'userName', 'annualCheckStatus'],
       where: { category: category},
