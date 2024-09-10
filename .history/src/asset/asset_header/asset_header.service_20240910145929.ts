@@ -4,7 +4,7 @@ import { UpdateAssetHeaderDto } from './dto/update-asset_header.dto';
 import { UpdateMasterSubcategoryDto } from 'src/master/master_subcategory/dto/update-master_subcategory.dto';
 import { AssetHeader } from './entities/asset_header.entity';
 import { InjectDataSource, InjectRepository } from '@nestjs/typeorm';
-import { DataSource, In, Like, Repository } from 'typeorm';
+import { DataSource, Like, Repository } from 'typeorm';
 import { MasterSubcategory } from 'src/master/master_subcategory/entities/master_subcategory.entity';
 import { MasterSubcategoryService } from 'src/master/master_subcategory/master_subcategory.service';
 import * as fs from 'fs';
@@ -198,9 +198,10 @@ export class AssetHeaderService {
   findAllSelectCol(category: string) {
     return this.assetRepository.find({
       select: ['edp_No', 'fin_No', 'category', 'subCategory', 'status', 'firstCheck', 'lastCheck', 'inputUser', 'modifiedBy', 'branchCode', 'userName', 'annualCheckStatus', 'brand', 'model'],
+      where: { category: category },
       where: {
         category: category,
-        status: In(['Active', 'In Stock']),
+        status: In(['active', 'in stock']),
       },
       order: {
         branchCode: 'ASC'

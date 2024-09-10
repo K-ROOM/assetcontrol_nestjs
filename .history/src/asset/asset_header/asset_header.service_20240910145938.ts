@@ -200,7 +200,7 @@ export class AssetHeaderService {
       select: ['edp_No', 'fin_No', 'category', 'subCategory', 'status', 'firstCheck', 'lastCheck', 'inputUser', 'modifiedBy', 'branchCode', 'userName', 'annualCheckStatus', 'brand', 'model'],
       where: {
         category: category,
-        status: In(['Active', 'In Stock']),
+        status: In(['active', 'in stock']),
       },
       order: {
         branchCode: 'ASC'
