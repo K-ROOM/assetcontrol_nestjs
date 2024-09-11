@@ -26,15 +26,15 @@ export class AuthService {
       sub: user.userID,
       username: user.username,
     };
-
+    
     return {
       status: 'ok',
       message: 'Logged in',
       accessToken: this.jwtService.sign(payload),
+      accessTokenExpiresIn: '3600',
       refreshToken: this.jwtService.sign(payload, { expiresIn: '7d' }),
       user: { username: user.username, userId: user.userID },
       roles: { app: user.roles }
-      accessTokenExpiresIn: '60',
     };
   }
 
@@ -48,7 +48,7 @@ export class AuthService {
       status: 'ok',
       message: 'Token is refreshed successfully!',
       accessToken: this.jwtService.sign(payload),
-      accessTokenExpiresIn: '60',
+      accessTokenExpiresIn: '3600',
       refreshToken: this.jwtService.sign(payload, { expiresIn: '7d' }),
     };
   }

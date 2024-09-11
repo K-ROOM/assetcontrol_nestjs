@@ -26,7 +26,7 @@ export class AuthService {
       sub: user.userID,
       username: user.username,
     };
-
+    console.log(payload);
     return {
       status: 'ok',
       message: 'Logged in',

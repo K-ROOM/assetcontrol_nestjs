@@ -4,6 +4,7 @@ import * as bcrypt from 'bcrypt';
 import { User } from 'src/login/user/entities/user.entity';
 import { JwtService } from '@nestjs/jwt';
 import { ok } from 'assert';
+import { platform } from 'os';
 
 @Injectable()
 export class AuthService {
@@ -26,12 +27,12 @@ export class AuthService {
       sub: user.userID,
       username: user.username,
     };
-
+    console.log(platform);
     return {
       status: 'ok',
       message: 'Logged in',
       accessToken: this.jwtService.sign(payload),
-      accessTokenExpiresIn: '360',
+      accessTokenExpiresIn: '3600',
       refreshToken: this.jwtService.sign(payload, { expiresIn: '7d' }),
       user: { username: user.username, userId: user.userID },
       roles: { app: user.roles }
@@ -48,7 +49,7 @@ export class AuthService {
       status: 'ok',
       message: 'Token is refreshed successfully!',
       accessToken: this.jwtService.sign(payload),
-      accessTokenExpiresIn: '60',
+      accessTokenExpiresIn: '3600',
       refreshToken: this.jwtService.sign(payload, { expiresIn: '7d' }),
     };
   }
