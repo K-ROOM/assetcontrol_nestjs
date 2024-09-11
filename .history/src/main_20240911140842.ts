@@ -9,7 +9,7 @@ const port = process.env.PORT || 2000
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   const corsOptions : CorsOptions = {
-    origin: true,
+    origin: ['https://app.nipponexpress-necl.co.th'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
     optionsSuccessStatus: 204,
