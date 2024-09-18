@@ -21,11 +21,20 @@ export class IpHeaderService {
     return this.ipRepository.find();
   }
 
-  async findAllWithASC() {
+  async findAllSelecColWithBranchCode(branchCode): Promise<any[]> {
     return await this.ipRepository
       .createQueryBuilder('ipHeader')
-      .orderBy('ipHeader.branchCode', 'ASC')
-      .addOrderBy('ipHeader.ip4', 'ASC')
+      .leftJoinAndSelect('ipHeader.assetHeader', 'assetHeader')
+      .select([
+        'ipHeader.ip1 AS ip1',
+        'ipHeader.ip2 AS ip2',
+        'ipHeader.ip3 AS ip3',
+        'ipHeader.ip4 AS ip4',
+        'ipHeader.status AS status',
+        'assetHeader.edp_No AS edp_No',
+      ])
+      .where('ipHeader.branchCode = :branchCode', { branchCode })
+      .orderBy('ipHeader.ip4', 'ASC')
       .getRawMany();
   }
 

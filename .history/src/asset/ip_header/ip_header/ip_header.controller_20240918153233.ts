@@ -7,7 +7,7 @@ import { JwtGuard } from 'src/auth/guards/jwt-auth-guard';
 @UseGuards(JwtGuard)
 @Controller('ip')
 export class IpHeaderController {
-  constructor(private readonly ipHeaderService: IpHeaderService) {}
+  constructor(private readonly ipHeaderService: IpHeaderService) { }
 
   @Post()
   create(@Body() createIpHeaderDto: CreateIpHeaderDto) {
@@ -15,13 +15,13 @@ export class IpHeaderController {
   }
 
   @Get()
-  findAll() {
-    return this.ipHeaderService.findAll();
-  }
-
-  @Get('/allasc')
-  findAllWithASC() {
-    return this.ipHeaderService.findAllWithASC();
+  async findAll() {
+    return await this.ipHeaderService.findAll({
+      order: [
+        ['branchCode', 'ASC'],
+        ['ip4', 'ASC'],
+      ],
+    });
   }
 
   @Patch('/:ip1/:ip2/:ip3/:ip4/:edp_No')

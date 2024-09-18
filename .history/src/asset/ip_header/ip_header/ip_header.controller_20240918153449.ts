@@ -19,9 +19,9 @@ export class IpHeaderController {
     return this.ipHeaderService.findAll();
   }
 
-  @Get('/allasc')
-  findAllWithASC() {
-    return this.ipHeaderService.findAllWithASC();
+  @Get()
+  findAllWith() {
+    return this.ipHeaderService.findAll();
   }
 
   @Patch('/:ip1/:ip2/:ip3/:ip4/:edp_No')

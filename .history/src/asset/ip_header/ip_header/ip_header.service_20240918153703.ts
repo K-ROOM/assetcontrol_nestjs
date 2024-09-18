@@ -21,7 +21,7 @@ export class IpHeaderService {
     return this.ipRepository.find();
   }
 
-  async findAllWithASC() {
+  async findAllSWithASC() {
     return await this.ipRepository
       .createQueryBuilder('ipHeader')
       .orderBy('ipHeader.branchCode', 'ASC')

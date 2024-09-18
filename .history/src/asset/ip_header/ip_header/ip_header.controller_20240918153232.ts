@@ -15,14 +15,14 @@ export class IpHeaderController {
   }
 
   @Get()
-  findAll() {
-    return this.ipHeaderService.findAll();
-  }
-
-  @Get('/allasc')
-  findAllWithASC() {
-    return this.ipHeaderService.findAllWithASC();
-  }
+async findAll() {
+  return await this.ipHeaderService.findAll({
+    order: [
+      ['branchCode', 'ASC'],
+      ['ip4', 'ASC'],
+    ],
+  });
+}
 
   @Patch('/:ip1/:ip2/:ip3/:ip4/:edp_No')
   update(@Param('ip1') ip1: number, @Param('ip2') ip2: number, @Param('ip3') ip3: number, @Param('ip4') ip4: number, @Param('edp_No') edp_No: string) {

@@ -17,16 +17,13 @@ export class IpHeaderService {
     return 'This action adds a new ipHeader';
   }
 
-  findAll() {
-    return this.ipRepository.find();
-  }
-
-  async findAllWithASC() {
-    return await this.ipRepository
-      .createQueryBuilder('ipHeader')
-      .orderBy('ipHeader.branchCode', 'ASC')
-      .addOrderBy('ipHeader.ip4', 'ASC')
-      .getRawMany();
+  async findAll() {
+    return await this.ipRepository.find({
+      order: [
+        ['branchCode', 'ASC'],
+        ['ip4', 'ASC'],
+      ],
+    });
   }
 
   async findAllSelecColWithBranchCode(branchCode): Promise<any[]> {

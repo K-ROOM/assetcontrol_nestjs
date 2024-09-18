@@ -19,8 +19,8 @@ export class IpHeaderController {
     return this.ipHeaderService.findAll();
   }
 
-  @Get('/allasc')
-  findAllWithASC() {
+  @Get()
+  findAllWithASC('/allasc') {
     return this.ipHeaderService.findAllWithASC();
   }
 
