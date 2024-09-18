@@ -24,18 +24,6 @@ export class IpHeaderService {
   async findAllWithASC() {
     return await this.ipRepository
       .createQueryBuilder('ipHeader')
-      .select([
-        'ipHeader.ip1 AS ip1',
-        'ipHeader.ip2 AS ip2',
-        'ipHeader.ip3 AS ip3',
-        'ipHeader.ip4 AS ip4',
-        'ipHeader.vLanNo AS vLanNo',
-        'ipHeader.branchCode AS branchCode',
-        'ipHeader.subSectionCode AS subSectionCode',
-        'ipHeader.sectionCode AS sectionCode',
-        'ipHeader.status AS status',
-        'ipHeader.edp_No AS edp_No'
-      ])
       .orderBy('ipHeader.branchCode', 'ASC')
       .addOrderBy('ipHeader.ip4', 'ASC')
       .getRawMany();
