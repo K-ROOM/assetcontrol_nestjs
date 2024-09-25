@@ -21,16 +21,7 @@ export class MasterModelService {
   }
 
   findWithBrandAndSubCategory(brand: string, subCategory: string) {
-    return this.masterModelRepository.find({
-      select: ['subCategory', 'brand', 'model'],
-      where: {
-        brand: brand,
-        subCategory: subCategory,
-      },
-      order: {
-        model: 'ASC'
-      }
-    });
+    return this.masterModelRepository.find();
   }
 
   findAllCount() {

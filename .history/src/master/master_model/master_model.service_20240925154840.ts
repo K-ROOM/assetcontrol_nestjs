@@ -24,8 +24,8 @@ export class MasterModelService {
     return this.masterModelRepository.find({
       select: ['subCategory', 'brand', 'model'],
       where: {
-        brand: brand,
         subCategory: subCategory,
+        status: In(['Active', 'In Stock']),
       },
       order: {
         model: 'ASC'

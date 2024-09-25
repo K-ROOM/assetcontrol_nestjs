@@ -20,11 +20,14 @@ export class MasterModelService {
     return this.masterModelRepository.find();
   }
 
-  findAllSelectCount() {
+  findWithBrandAndSubCategory() {
+    return this.masterModelRepository.find();
+  }
+
+  findAllCount() {
     const entityManager = this.masterModelRepository.manager
     return this.masterModelRepository.query(`
-    SELECT        COUNT(*) AS model
-FROM            tblMaster_Model`);
+    SELECT COUNT(*) AS modelcount FROM tblMaster_Model`);
   }
 
   findOne(id: number) {

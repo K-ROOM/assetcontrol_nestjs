@@ -17,6 +17,11 @@ export class MasterModelController {
     return this.masterModelService.findAll();
   }
 
+  @Get()
+  findAll() {
+    return this.masterModelService.findAll();
+  }
+
   @Get('/count')
   findAllCount() {
     return this.masterModelService.findAllCount();

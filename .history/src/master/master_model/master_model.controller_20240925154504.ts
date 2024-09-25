@@ -17,6 +17,11 @@ export class MasterModelController {
     return this.masterModelService.findAll();
   }
 
+  @Get('/:brand/:model')
+  findAll() {
+    return this.masterModelService.findAll();
+  }
+
   @Get('/count')
   findAllCount() {
     return this.masterModelService.findAllCount();

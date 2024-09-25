@@ -22,13 +22,13 @@ export class MasterModelService {
 
   findWithBrandAndSubCategory(brand: string, subCategory: string) {
     return this.masterModelRepository.find({
-      select: ['subCategory', 'brand', 'model'],
+      select: ['edp_No', 'fin_No', 'category', 'subCategory', 'status', 'firstCheck', 'lastCheck', 'inputUser', 'modifiedBy', 'branchCode', 'userName', 'annualCheckStatus', 'brand', 'model'],
       where: {
-        brand: brand,
-        subCategory: subCategory,
+        category: category,
+        status: In(['Active', 'In Stock']),
       },
       order: {
-        model: 'ASC'
+        branchCode: 'ASC'
       }
     });
   }

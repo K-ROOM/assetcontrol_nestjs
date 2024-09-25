@@ -20,7 +20,11 @@ export class MasterModelService {
     return this.masterModelRepository.find();
   }
 
-  findAllSelectCount() {
+  findWithBrandAndSubCategory(subCategory: string) {
+    return this.masterModelRepository.find();
+  }
+
+  findAllCount() {
     const entityManager = this.masterModelRepository.manager
     return this.masterModelRepository.query(`
     SELECT COUNT(*) AS modelcount FROM tblMaster_Model`);

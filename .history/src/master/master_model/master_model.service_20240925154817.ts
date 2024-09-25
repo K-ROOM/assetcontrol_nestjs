@@ -20,6 +20,19 @@ export class MasterModelService {
     return this.masterModelRepository.find();
   }
 
+  findWithBrandAndSubCategory(brand: string, subCategory: string) {
+    return this.masterModelRepository.find({
+      select: ['edp_No', 'fin_No', 'category', 'subCategory', 'status', 'firstCheck', 'lastCheck', 'inputUser', 'modifiedBy', 'branchCode', 'userName', 'annualCheckStatus', 'brand', 'model'],
+      where: {
+        category: category,
+        status: In(['Active', 'In Stock']),
+      },
+      order: {
+        model: 'ASC'
+      }
+    });
+  }
+
   findAllCount() {
     const entityManager = this.masterModelRepository.manager
     return this.masterModelRepository.query(`

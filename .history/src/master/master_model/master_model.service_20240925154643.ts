@@ -20,14 +20,14 @@ export class MasterModelService {
     return this.masterModelRepository.find();
   }
 
-  findAllSelectCount() {
+  findWithBrandAndSubCategory(subCategory) {
+    return this.masterModelRepository.find();
+  }
+
+  findAllCount() {
     const entityManager = this.masterModelRepository.manager
     return this.masterModelRepository.query(`
-    SELECT COUNT(tblIPAddress_Status.BranchCode) AS ipCount, tblMaster_Branch.BranchCode AS branchCode, tblMaster_Branch.Description AS description,
-    (SELECT COUNT(Status) AS active FROM tblIPAddress_Status WHERE (BranchCode = tblMaster_Branch.BranchCode) AND (Status = 'Active')) AS active,
-    (SELECT COUNT(Status) AS empty FROM tblIPAddress_Status AS tblIPAddress_Status_2 WHERE (BranchCode = tblMaster_Branch.BranchCode) AND (Status = 'Empty')) AS empty
-    FROM tblIPAddress_Status INNER JOIN tblMaster_Branch ON tblIPAddress_Status.BranchCode = tblMaster_Branch.BranchCode
-    GROUP BY tblIPAddress_Status.BranchCode, tblMaster_Branch.BranchCode, tblMaster_Branch.Description`);
+    SELECT COUNT(*) AS modelcount FROM tblMaster_Model`);
   }
 
   findOne(id: number) {

@@ -20,6 +20,26 @@ export class MasterModelService {
     return this.masterModelRepository.find();
   }
 
+  findWithBrandAndSubCategory(brand: string, subCategory: string) {
+    return this.masterModelRepository.find({
+      select: ['subCategory', 'brand', 'model'],
+      where: {
+        brand: brand,
+        subCategory: subCategory,
+        model: ,
+      },
+      order: {
+        model: 'ASC'
+      }
+    });
+  }
+
+  findAllCount() {
+    const entityManager = this.masterModelRepository.manager
+    return this.masterModelRepository.query(`
+    SELECT COUNT(*) AS modelcount FROM tblMaster_Model`);
+  }
+
   findOne(id: number) {
     return `This action returns a #${id} masterModel`;
   }

@@ -17,8 +17,13 @@ export class MasterModelController {
     return this.masterModelService.findAll();
   }
 
+  @Get('/:brand/:subCategory')
+  findWithBrandAndSubCategory() {
+    return this.masterModelService.findAll();
+  }
+
   @Get('/count')
-  findAllSelectCount() {
+  findAllCount() {
     return this.masterModelService.findAllCount();
   }
 

@@ -20,11 +20,23 @@ export class MasterModelService {
     return this.masterModelRepository.find();
   }
 
-  findAllSelectCount() {
+  findWithBrandAndSubCategory(brand: string, subCategory: string) {
+    return this.masterModelRepository.find({
+      select: ['edp_No', 'fin_No', 'category', 'subCategory', 'brand', 'model'],
+      where: {
+        category: category,
+        status: In(['Active', 'In Stock']),
+      },
+      order: {
+        model: 'ASC'
+      }
+    });
+  }
+
+  findAllCount() {
     const entityManager = this.masterModelRepository.manager
     return this.masterModelRepository.query(`
-    SELECT COUNT(*) AS model
-FROM            tblMaster_Model`);
+    SELECT COUNT(*) AS modelcount FROM tblMaster_Model`);
   }
 
   findOne(id: number) {
