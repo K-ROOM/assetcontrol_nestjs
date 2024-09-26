@@ -25,7 +25,6 @@ import { diskStorage } from "multer";
 import { MasterAnnualstatusModule } from "./master/master_annualstatus/master_annualstatus.module";
 import { join } from "path";
 import { ServeStaticModule } from "@nestjs/serve-static";
-import { MasterOskeyModule } from "./master/master_oskey/master_oskey.module";
 
 @Module({
   imports: [
@@ -104,7 +103,7 @@ import { MasterOskeyModule } from "./master/master_oskey/master_oskey.module";
     MasterOfficeversionModule,
     MasterAntivirusModule,
     MasterAnnualstatusModule,
-    MasterOskeyModule,
+    MasterOS
     UserModule,
     AuthModule,
   ],

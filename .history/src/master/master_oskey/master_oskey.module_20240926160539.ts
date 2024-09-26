@@ -1,0 +1,16 @@
+import { Module } from '@nestjs/common';
+import { MasterOskeyService } from './master_oskey.service';
+import { MasterOskeyController } from './master_oskey.controller';
+import { TypeOrmModule } from '@nestjs/typeorm';
+
+@Module({
+  controllers: [MasterOskeyController],
+  providers: [MasterOskeyService]
+})
+@Module({
+  imports: [TypeOrmModule.forFeature([MasterOS])],
+  controllers: [MasterOskeyController],
+  providers: [MasterOskeyService],
+  exports: [MasterOskeyService],
+})
+export class MasterOskeyModule {}
