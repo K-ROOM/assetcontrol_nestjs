@@ -1,6 +1,6 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
 
-@Entity('MasterOSKeyType')
+@Entity('MasterOSLicenseType')
 export class MasterOskey {
 
   @PrimaryColumn({ name: 'OSKey' })

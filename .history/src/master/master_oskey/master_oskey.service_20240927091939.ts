@@ -9,19 +9,19 @@ import { Repository } from 'typeorm';
 export class MasterOskeyService {
   constructor(
     @InjectRepository(MasterOskey)
-    private readonly masterOsKeyRepository: Repository<MasterOskey>,
+    private readonly masterOSKeyRepository: Repository<MasterOskey>,
   ) { }
 
   create(createMasterOskeyDto: CreateMasterOskeyDto) {
-    return this.masterOsKeyRepository.save(createMasterOskeyDto);
+    return this.masterOSKeyRepository.save(createMasterOskeyDto);
   }
 
   findAll() {
-    return this.masterOsKeyRepository.find();
+    return this.masterOSKeyRepository.find();
   }
 
   findWithOSLicenseType(osLicenseType: string) {
-    return this.masterOsKeyRepository.find({
+    return this.masterOSKeyRepository.find({
       select: ['osKey', 'osLicenseType', 'status'],
       where: {
         osLicenseType: osLicenseType,
