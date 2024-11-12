@@ -206,7 +206,8 @@ export class AssetHeaderService {
     const entityManager = this.assetRepository.manager
     return this.assetRepository.query(`
     SELECT A1.EDP_No, A1.UserName, A1.BranchCode, A1.Brand, A1.Model, A1.Category, A1.SubCategory, A1.Status, A1.AnnualCheckStatus
-    FROM tblAssetMain AS A1 INNER JOIN tblMaster_SubCategory AS A2 ON A1.SubCategory = A2.SubCategory WHERE (A2.AnnualCheck = 1) AND (A1.AnnualCheckStatus IN ('Ok', 'Wait'))`);
+FROM tblAssetMain AS A1 INNER JOIN tblMaster_SubCategory AS A2 ON A1.SubCategory = A2.SubCategory
+WHERE (A2.AnnualCheck = 1) AND (A1.AnnualCheckStatus IN ('Ok', 'Wait'))`);
   }
 
   findAllSelectCol(category: string) {
