@@ -198,8 +198,11 @@ export class AssetHeaderService {
   findAllAnnualCheckCount() {
     const entityManager = this.assetRepository.manager
     return this.assetRepository.query(`
-    SELECT A1.SubCategory, COUNT(CASE WHEN A1.AnnualCheckStatus = 'Ok' THEN 1 END) AS Ok, COUNT(CASE WHEN A1.AnnualCheckStatus = 'Wait' THEN 1 END) AS Wait
-    FROM tblAssetMain AS A1 INNER JOIN tblMaster_SubCategory AS A2 ON A1.SubCategory = A2.SubCategory WHERE (A2.AnnualCheck = 1) GROUP BY A1.SubCategory`);
+    SELECT        A1.SubCategory, COUNT(CASE WHEN A1.AnnualCheckStatus = 'Ok' THEN 1 END) AS Ok, COUNT(CASE WHEN A1.AnnualCheckStatus = 'Wait' THEN 1 END) AS Wait
+FROM            tblAssetMain AS A1 INNER JOIN
+                         tblMaster_SubCategory AS A2 ON A1.SubCategory = A2.SubCategory
+WHERE        (A2.AnnualCheck = 1)
+GROUP BY A1.SubCategory`);
   }
 
   findAllSelectCol(category: string) {

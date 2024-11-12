@@ -34,8 +34,8 @@ export class AssetHeaderController {
   }
 
   @Get('/annualcheckcount')
-  findAllAnnualCheckCount() {
-    return this.assetHeaderService.findAllAnnualCheckCount();
+  findAllCount() {
+    return this.assetHeaderService.findAllCount();
   }
 
   @Get('/photo/:filename')
