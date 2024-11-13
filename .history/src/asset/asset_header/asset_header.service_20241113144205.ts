@@ -199,15 +199,15 @@ export class AssetHeaderService {
     const entityManager = this.assetRepository.manager
     return this.assetRepository.query(`
     SELECT SUM(CASE WHEN A1.AnnualCheckStatus = 'Ok' THEN 1 ELSE 0 END) AS TotalOk, SUM(CASE WHEN A1.AnnualCheckStatus = 'Wait' THEN 1 ELSE 0 END) AS TotalWait, SUM(CASE WHEN A1.AnnualCheckStatus IN ('Ok', 'Wait') 
-    THEN 1 ELSE 0 END) AS Total FROM tblAssetMain AS A1 INNER JOIN tblMaster_SubCategory AS A2 ON A1.SubCategory = A2.SubCategory WHERE (A2.AnnualCheck = 1) AND (A1.AnnualCheckStatus IN ('Ok', 'Wait')) AND (A1.Status IN ('Active', 'In Stock'))`);
+    THEN 1 ELSE 0 END) AS Total FROM tblAssetMain AS A1 INNER JOIN tblMaster_SubCategory AS A2 ON A1.SubCategory = A2.SubCategory WHERE (A2.AnnualCheck = 1)`);
   }
 
   findAllAnnualCheckAll() {
     const entityManager = this.assetRepository.manager
     return this.assetRepository.query(`
     SELECT A1.EDP_No, A1.UserName, A1.BranchCode, A1.Brand, A1.Model, A1.Category, A1.SubCategory, A1.Status, A1.AnnualCheckStatus
-    FROM tblAssetMain AS A1 INNER JOIN tblMaster_SubCategory AS A2 ON A1.SubCategory = A2.SubCategory
-    WHERE (A2.AnnualCheck = 1) AND (A1.AnnualCheckStatus IN ('Ok', 'Wait')) AND (A1.Status IN ('Active', 'In Stock'))`);
+FROM tblAssetMain AS A1 INNER JOIN tblMaster_SubCategory AS A2 ON A1.SubCategory = A2.SubCategory
+WHERE        (A2.AnnualCheck = 1) AND (A1.AnnualCheckStatus IN ('Ok', 'Wait')) AND (A1.Status IN ('Active', 'In Stock'))`);
   }
 
   findAllSelectCol(category: string) {
