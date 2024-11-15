@@ -5,7 +5,7 @@ export class Checkperiod {
   @PrimaryColumn()
   halfName: string;
 
-  @PrimaryColumn()
+  @PrimaryColumn({ name: 'WorkYear' })
   workYear: string;
 
   @Column({ type: 'date' })
