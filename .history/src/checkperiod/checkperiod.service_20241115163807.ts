@@ -26,7 +26,7 @@ export class CheckperiodService {
         workYear: 'DESC',
         halfName: 'DESC',
       },
-      take: 1,
+      take: 1, // ดึงแค่ 1 แถว
     }).then(results => results[0]);
   }
 

@@ -21,13 +21,13 @@ export class CheckperiodService {
   }
 
   async findLatest(): Promise<Checkperiod | undefined> {
-    return this.checkPeriodRepository.find({
+    return this.checkperiodRepository.find({
       order: {
         workYear: 'DESC',
         halfName: 'DESC',
       },
-      take: 1,
-    }).then(results => results[0]);
+      take: 1, // ดึงแค่ 1 แถว
+    }).then(results => results[0]); // ส่งแถวแรกจากผลลัพธ์
   }
 
   findOne(id: number) {

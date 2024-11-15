@@ -26,8 +26,8 @@ export class CheckperiodService {
         workYear: 'DESC',
         halfName: 'DESC',
       },
-      take: 1,
-    }).then(results => results[0]);
+      take: 1, // ดึงแค่ 1 แถว
+    }).then(results => results[0]); // ส่งแถวแรกจากผลลัพธ์
   }
 
   findOne(id: number) {
