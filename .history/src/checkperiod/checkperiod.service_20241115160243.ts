@@ -1,19 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCheckperiodDto } from './dto/create-checkperiod.dto';
 import { UpdateCheckperiodDto } from './dto/update-checkperiod.dto';
-import { Checkperiod } from './entities/checkperiod.entity';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 
 @Injectable()
 export class CheckperiodService {
   constructor(
-    @InjectRepository(Checkperiod)
-    private readonly checkPeriodRepository: Repository<Checkperiod>,
+    @InjectRepository(MasterBrand)
+    private readonly masterBrandRepository: Repository<MasterBrand>,
   ) { }
-
+  
   create(createCheckperiodDto: CreateCheckperiodDto) {
-    return this.checkPeriodRepository.save(createCheckperiodDto);
+    return this.masterBrandRepository.save(createCheckperiodDto);
   }
 
   findAll() {

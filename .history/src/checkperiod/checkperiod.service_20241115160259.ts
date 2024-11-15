@@ -9,11 +9,11 @@ import { Repository } from 'typeorm';
 export class CheckperiodService {
   constructor(
     @InjectRepository(Checkperiod)
-    private readonly checkPeriodRepository: Repository<Checkperiod>,
+    private readonly masterBrandRepository: Repository<Checkperiod>,
   ) { }
 
   create(createCheckperiodDto: CreateCheckperiodDto) {
-    return this.checkPeriodRepository.save(createCheckperiodDto);
+    return this.masterBrandRepository.save(createCheckperiodDto);
   }
 
   findAll() {

@@ -13,7 +13,7 @@ export class CheckperiodService {
   ) { }
 
   create(createCheckperiodDto: CreateCheckperiodDto) {
-    return this.checkPeriodRepository.save(createCheckperiodDto);
+    return this.masterBrandRepository.save(createCheckperiodDto);
   }
 
   findAll() {
