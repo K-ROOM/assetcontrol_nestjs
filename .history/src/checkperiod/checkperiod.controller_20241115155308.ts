@@ -9,7 +9,7 @@ export class CheckperiodController {
 
   @Post()
   create(@Body() createCheckperiodDto: CreateCheckperiodDto) {
-    console.log(createCheckperiodDto);
+    console.log();
     return this.checkperiodService.create(createCheckperiodDto);
   }
 
