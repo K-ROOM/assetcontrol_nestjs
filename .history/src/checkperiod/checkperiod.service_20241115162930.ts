@@ -16,17 +16,17 @@ export class CheckperiodService {
     return this.checkPeriodRepository.save(createCheckperiodDto);
   }
 
-  findAll() {
-    return `This action returns all checkperiod`;
-  }
-
   async findLatest(): Promise<Checkperiod> {
-    return this.checkPeriodRepository.findOne({
+    return this.checkperiodRepository.findOne({
       order: {
         workYear: 'DESC',
         halfName: 'DESC',
       },
     });
+  }
+
+  findAll() {
+    return `This action returns all checkperiod`;
   }
 
   findOne(id: number) {

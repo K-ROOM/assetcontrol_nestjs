@@ -2,7 +2,6 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { CheckperiodService } from './checkperiod.service';
 import { CreateCheckperiodDto } from './dto/create-checkperiod.dto';
 import { UpdateCheckperiodDto } from './dto/update-checkperiod.dto';
-import { Checkperiod } from './entities/checkperiod.entity';
 
 @Controller('checkperiod')
 export class CheckperiodController {

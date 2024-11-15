@@ -16,10 +16,6 @@ export class CheckperiodService {
     return this.checkPeriodRepository.save(createCheckperiodDto);
   }
 
-  findAll() {
-    return `This action returns all checkperiod`;
-  }
-
   async findLatest(): Promise<Checkperiod> {
     return this.checkPeriodRepository.findOne({
       order: {
