@@ -26,6 +26,7 @@ import { MasterAnnualstatusModule } from "./master/master_annualstatus/master_an
 import { join } from "path";
 import { ServeStaticModule } from "@nestjs/serve-static";
 import { MasterOskeyModule } from "./master/master_oskey/master_oskey.module";
+import { CheckperiodModule } from './checkperiod/checkperiod.module';
 
 @Module({
   imports: [
@@ -107,6 +108,7 @@ import { MasterOskeyModule } from "./master/master_oskey/master_oskey.module";
     MasterOskeyModule,
     UserModule,
     AuthModule,
+    CheckperiodModule,
   ],
   controllers: [AppController],
   providers: [AppService],
