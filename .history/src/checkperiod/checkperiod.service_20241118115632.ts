@@ -48,43 +48,20 @@ export class CheckperiodService {
     const queryRunner = this.dataSource.createQueryRunner();
     await queryRunner.connect();
     await queryRunner.startTransaction();
-
     try {
-      // Insert data into Checkperiod (Header Table)
-      await queryRunner.manager.save(Checkperiod, data);
+      await queryRunner.manager.save(CheckperiodDetail, data.details);
 
-      // Insert data into CheckperiodDetail using raw SQL
-      await queryRunner.manager.query(
-        `
-        INSERT INTO tblCheck_Period_Detail (EDP_No, Status, halfName, workYear)
-        SELECT 
-            A1.EDP_No, 
-            A1.AnnualCheckStatus, 
-            :${data.halfName} AS halfName,
-            :${data.workYear} AS workYear 
-        FROM 
-            tblAssetMain AS A1 
-            INNER JOIN tblMaster_SubCategory AS A2 
-            ON A1.SubCategory = A2.SubCategory
-        WHERE 
-            (A2.AnnualCheck = 1) 
-            AND (A1.AnnualCheckStatus IN ('Ok', 'Wait')) 
-            AND (A1.Status IN ('Active', 'In Stock'));
-        `);
+      await queryRunner.manager.save(Checkperiod, data.header);
 
       await queryRunner.commitTransaction();
-
-      return {
-        status: "ok",
-        msg: "Submit transaction successful",
-      };
     } catch (error) {
-      // Rollback transaction in case of failure
       await queryRunner.rollbackTransaction();
-      throw new Error(`Transaction failed: ${error.message}`);
+      throw new Error('Transaction failed');
     } finally {
       await queryRunner.release();
+      return {
+        "status": "ok", "msg": "submit transaction successful",
+      }
     }
   }
-
 }

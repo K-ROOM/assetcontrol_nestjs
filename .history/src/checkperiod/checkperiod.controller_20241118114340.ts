@@ -16,8 +16,8 @@ export class CheckperiodController {
   }
 
   @Post('/transaction_history')
-  createHistoryTransaction(@Body() data: any) {
-    return this.checkperiodService.createHistoryTransaction(data);
+  updateRelationshipAndAddressTransaction(@Param('recruitmentID') recruitmentID: string, @Body() data: any) {
+    return this.checkperiodService.createHistoryTransaction(recruitmentID, data);
   }
 
   @Get()

@@ -1,9 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { CheckperiodService } from './checkperiod.service';
 import { CreateCheckperiodDto } from './dto/create-checkperiod.dto';
 import { UpdateCheckperiodDto } from './dto/update-checkperiod.dto';
 import { Checkperiod } from './entities/checkperiod.entity';
-import { JwtGuard } from 'src/auth/guards/jwt-auth-guard';
 
 @UseGuards(JwtGuard)
 @Controller('checkperiod')
@@ -16,8 +15,9 @@ export class CheckperiodController {
   }
 
   @Post('/transaction_history')
-  createHistoryTransaction(@Body() data: any) {
-    return this.checkperiodService.createHistoryTransaction(data);
+  @UseGuards(JwtGuard)
+  updateRelationshipAndAddressTransaction(@Param('recruitmentID') recruitmentID: string, @Body() data: any) {
+    return this.rmsHeaderService.updateRelationshipAndAddressTransaction(recruitmentID, data);
   }
 
   @Get()

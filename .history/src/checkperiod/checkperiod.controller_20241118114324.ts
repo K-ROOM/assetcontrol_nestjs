@@ -16,8 +16,9 @@ export class CheckperiodController {
   }
 
   @Post('/transaction_history')
-  createHistoryTransaction(@Body() data: any) {
-    return this.checkperiodService.createHistoryTransaction(data);
+  @UseGuards(JwtGuard)
+  updateRelationshipAndAddressTransaction(@Param('recruitmentID') recruitmentID: string, @Body() data: any) {
+    return this.rmsHeaderService.updateRelationshipAndAddressTransaction(recruitmentID, data);
   }
 
   @Get()

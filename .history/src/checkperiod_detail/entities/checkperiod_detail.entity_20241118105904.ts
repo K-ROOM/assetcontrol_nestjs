@@ -1,0 +1,29 @@
+import { Checkperiod } from 'src/checkperiod/entities/checkperiod.entity';
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
+
+@Entity('tblCheck_Period_Detail')
+export class CheckperiodDetail {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column({ nullable: true })
+  edp_No: string;
+
+  @Column({ type: 'boolean', default: false })
+  status: boolean;
+
+  @ManyToOne(() => Checkperiod, (checkperiod) => checkperiod.details, {
+    nullable: false,
+  })
+  @JoinColumn([
+    { name: 'HalfName', referencedColumnName: 'halfName' },
+    { name: 'WorkYear', referencedColumnName: 'workYear' },
+  ])
+  checkperiod: Checkperiod;
+}

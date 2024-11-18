@@ -27,6 +27,7 @@ import { join } from "path";
 import { ServeStaticModule } from "@nestjs/serve-static";
 import { MasterOskeyModule } from "./master/master_oskey/master_oskey.module";
 import { CheckperiodModule } from './checkperiod/checkperiod.module';
+import { CheckperiodDetailModule } from './checkperiod_detail/checkperiod_detail.module';
 
 @Module({
   imports: [
@@ -109,6 +110,7 @@ import { CheckperiodModule } from './checkperiod/checkperiod.module';
     UserModule,
     AuthModule,
     CheckperiodModule,
+    CheckperiodDetailModule,
   ],
   controllers: [AppController],
   providers: [AppService],

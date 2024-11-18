@@ -16,7 +16,7 @@ export class CheckperiodController {
   }
 
   @Post('/transaction_history')
-  createHistoryTransaction(@Body() data: any) {
+  updateRelationshipAndAddressTransaction(@Body() data: any) {
     return this.checkperiodService.createHistoryTransaction(data);
   }
 

@@ -48,20 +48,20 @@ export class CheckperiodService {
     const queryRunner = this.dataSource.createQueryRunner();
     await queryRunner.connect();
     await queryRunner.startTransaction();
-
+  
     try {
       // Insert data into Checkperiod (Header Table)
-      await queryRunner.manager.save(Checkperiod, data);
-
+      const checkperiod = await queryRunner.manager.save(Checkperiod, data.header);
+  
       // Insert data into CheckperiodDetail using raw SQL
       await queryRunner.manager.query(
         `
         INSERT INTO tblCheck_Period_Detail (EDP_No, Status, halfName, workYear)
         SELECT 
             A1.EDP_No, 
-            A1.AnnualCheckStatus, 
-            :${data.halfName} AS halfName,
-            :${data.workYear} AS workYear 
+            A1.Status, 
+            :halfName AS halfName,  -- Value from data.details.halfName
+            :workYear AS workYear   -- Value from data.details.workYear
         FROM 
             tblAssetMain AS A1 
             INNER JOIN tblMaster_SubCategory AS A2 
@@ -70,10 +70,16 @@ export class CheckperiodService {
             (A2.AnnualCheck = 1) 
             AND (A1.AnnualCheckStatus IN ('Ok', 'Wait')) 
             AND (A1.Status IN ('Active', 'In Stock'));
-        `);
-
+        `,
+        {
+          halfName: data.details.halfName,
+          workYear: data.details.workYear,
+        }
+      );
+  
+      // Commit transaction
       await queryRunner.commitTransaction();
-
+  
       return {
         status: "ok",
         msg: "Submit transaction successful",
@@ -86,5 +92,5 @@ export class CheckperiodService {
       await queryRunner.release();
     }
   }
-
+  
 }

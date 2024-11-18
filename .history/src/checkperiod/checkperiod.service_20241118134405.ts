@@ -51,7 +51,7 @@ export class CheckperiodService {
 
     try {
       // Insert data into Checkperiod (Header Table)
-      await queryRunner.manager.save(Checkperiod, data);
+      await queryRunner.manager.save(Checkperiod, data.header);
 
       // Insert data into CheckperiodDetail using raw SQL
       await queryRunner.manager.query(

@@ -1,5 +1,4 @@
-import { CheckperiodDetail } from 'src/checkperiod_detail/entities/checkperiod_detail.entity';
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
 
 @Entity('tblCheck_Period')
 export class Checkperiod {
