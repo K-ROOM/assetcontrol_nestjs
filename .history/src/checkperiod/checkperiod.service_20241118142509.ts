@@ -65,7 +65,7 @@ export class CheckperiodService {
             A1.EDP_No, 
             A1.AnnualCheckStatus, 
             CAST($1 AS VARCHAR), 
-            CAST($2 AS VARCHAR)
+            CAST($1 AS VARCHAR)
         FROM 
             tblAssetMain AS A1 
             INNER JOIN tblMaster_SubCategory AS A2 
