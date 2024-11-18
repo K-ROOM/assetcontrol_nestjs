@@ -50,34 +50,56 @@ export class CheckperiodService {
     await queryRunner.startTransaction();
 
     try {
-      // Insert data into Checkperiod (Header Table)
-      await queryRunner.manager.save(Checkperiod, data);
+      // Log the parameters
+      console.log('Parameters:', { halfName: data.halfName, workYear: data.workYear });
 
-      // Insert data into CheckperiodDetail using raw SQL
-      await queryRunner.manager.query(`
+      // Insert data into Checkperiod (Header Table)
+      const headerResult = await queryRunner.manager.save(Checkperiod, data);
+
+      // Insert data into CheckperiodDetail
+      const detailResult = await queryRunner.manager.query(
+        `
         INSERT INTO tblCheck_Period_Detail (EDP_No, Status, halfName, workYear)
-        SELECT A1.EDP_No, A1.AnnualCheckStatus, @0, @1
-        FROM tblAssetMain AS A1 
-        INNER JOIN tblMaster_SubCategory AS A2 
-        ON A1.SubCategory = A2.SubCategory
-        WHERE (A2.AnnualCheck = 1) 
-        AND (A1.AnnualCheckStatus IN ('Ok', 'Wait')) 
-        AND (A1.Status IN ('Active', 'In Stock'))
-      `, [data.halfName, data.workYear]);
+        SELECT 
+            A1.EDP_No, 
+            A1.AnnualCheckStatus, 
+            CAST($1 AS VARCHAR), 
+            CAST($2 AS VARCHAR)
+        FROM 
+            tblAssetMain AS A1 
+            INNER JOIN tblMaster_SubCategory AS A2 
+            ON A1.SubCategory = A2.SubCategory
+        WHERE 
+            (A2.AnnualCheck = 1) 
+            AND (A1.AnnualCheckStatus IN ('Ok', 'Wait')) 
+            AND (A1.Status IN ('Active', 'In Stock'));
+        `,
+        [data.halfName, data.workYear]
+      );
 
       await queryRunner.commitTransaction();
 
       return {
         status: "ok",
         msg: "Submit transaction successful",
+        headerResult,
+        detailResult
       };
     } catch (error) {
-      // Rollback transaction in case of failure
+      console.error('Transaction error:', error);
       await queryRunner.rollbackTransaction();
       throw new Error(`Transaction failed: ${error.message}`);
     } finally {
       await queryRunner.release();
     }
+  }
+
+  createHistoryTransaction() {
+    const entityManager = this.assetRepository.manager
+    return this.assetRepository.query(`
+    SELECT A1.EDP_No, A1.UserName, A1.BranchCode, A1.Brand, A1.Model, A1.Category, A1.SubCategory, A1.Status, A1.AnnualCheckStatus
+    FROM tblAssetMain AS A1 INNER JOIN tblMaster_SubCategory AS A2 ON A1.SubCategory = A2.SubCategory
+    WHERE (A2.AnnualCheck = 1) AND (A1.AnnualCheckStatus IN ('Ok', 'Wait')) AND (A1.Status IN ('Active', 'In Stock'))`);
   }
 
 }

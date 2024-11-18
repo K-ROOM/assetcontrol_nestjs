@@ -63,7 +63,7 @@ export class CheckperiodService {
         WHERE (A2.AnnualCheck = 1) 
         AND (A1.AnnualCheckStatus IN ('Ok', 'Wait')) 
         AND (A1.Status IN ('Active', 'In Stock'))
-      `, [data.halfName, data.workYear]);
+    `, [data.halfName, data.workYear]);
 
       await queryRunner.commitTransaction();
 
