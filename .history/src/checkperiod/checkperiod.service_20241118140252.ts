@@ -52,7 +52,7 @@ export class CheckperiodService {
     try {
       // Insert data into Checkperiod (Header Table)
       await queryRunner.manager.save(Checkperiod, data);
-      console.log(data);
+
       // Insert data into CheckperiodDetail using raw SQL
       await queryRunner.manager.query(
         `
@@ -73,6 +73,7 @@ export class CheckperiodService {
         `,
         [data.halfName, data.workYear]  // Pass parameters (halfName, workYear) as an array
       );
+      
 
       await queryRunner.commitTransaction();
 

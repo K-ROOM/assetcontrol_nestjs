@@ -52,7 +52,7 @@ export class CheckperiodService {
     try {
       // Insert data into Checkperiod (Header Table)
       await queryRunner.manager.save(Checkperiod, data);
-      console.log(data);
+
       // Insert data into CheckperiodDetail using raw SQL
       await queryRunner.manager.query(
         `
@@ -60,8 +60,8 @@ export class CheckperiodService {
         SELECT 
             A1.EDP_No, 
             A1.AnnualCheckStatus, 
-            ?, -- Placeholder for halfName
-            ?  -- Placeholder for workYear
+            @halfName AS halfName,  -- ใช้ named parameter
+            @workYear AS workYear  -- ใช้ named parameter
         FROM 
             tblAssetMain AS A1 
             INNER JOIN tblMaster_SubCategory AS A2 
@@ -71,8 +71,12 @@ export class CheckperiodService {
             AND (A1.AnnualCheckStatus IN ('Ok', 'Wait')) 
             AND (A1.Status IN ('Active', 'In Stock'));
         `,
-        [data.halfName, data.workYear]  // Pass parameters (halfName, workYear) as an array
+        {
+          halfName: data.halfName,   // กำหนดค่าพารามิเตอร์
+          workYear: data.workYear   // กำหนดค่าพารามิเตอร์
+        }
       );
+
 
       await queryRunner.commitTransaction();
 
