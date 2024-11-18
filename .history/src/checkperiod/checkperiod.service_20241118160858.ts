@@ -46,16 +46,12 @@ export class CheckperiodService {
 
   async createHistoryTransaction(data: any) {
     const entityManager = this.checkPeriodRepository.manager
-    return this.checkPeriodRepository.query(`
-      INSERT INTO tblCheck_Period_Detail (EDP_No, Status, halfName, workYear)
-      SELECT A1.EDP_No, A1.AnnualCheckStatus, ?, ?
-      FROM tblAssetMain AS A1 
-      INNER JOIN tblMaster_SubCategory AS A2 
-      ON A1.SubCategory = A2.SubCategory
-      WHERE (A2.AnnualCheck = 1) 
-      AND (A1.AnnualCheckStatus IN ('Ok', 'Wait')) 
-      AND (A1.Status IN ('Active', 'In Stock'))
-  `, [data.halfName, data.workYear]);
+    return this.checkPeriodRepository.query(`INSERT INTO tblCheck_Period_Detail (EDP_No, Status, halfName, workYear)
+        SELECT A1.EDP_No, A1.AnnualCheckStatus, ${data.halfName}, ${data.workYear} FROM tblAssetMain AS A1 INNER JOIN tblMaster_SubCategory AS A2 ON A1.SubCategory = A2.SubCategory
+        WHERE (A2.AnnualCheck = 1) 
+            AND (A1.AnnualCheckStatus IN ('Ok', 'Wait')) 
+            AND (A1.Status IN ('Active', 'In Stock'));
+        `);
   }
 
 }
