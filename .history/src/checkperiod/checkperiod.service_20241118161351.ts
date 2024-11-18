@@ -61,4 +61,3 @@ export class CheckperiodService {
       throw new Error(`Failed to insert check period: ${error.message}`);
     }
   }
-}

@@ -57,8 +57,7 @@ export class CheckperiodService {
           AND (A1.AnnualCheckStatus IN ('Ok', 'Wait')) 
           AND (A1.Status IN ('Active', 'In Stock'))
       `, [data.halfName, data.workYear]);
-    } catch (error) {
+  } catch (error) {
       throw new Error(`Failed to insert check period: ${error.message}`);
-    }
   }
 }
