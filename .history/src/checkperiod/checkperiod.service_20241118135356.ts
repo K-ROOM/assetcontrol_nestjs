@@ -61,7 +61,7 @@ export class CheckperiodService {
             A1.EDP_No, 
             A1.AnnualCheckStatus, 
             ?,
-            ?
+            ?   -- placeholder for workYear
         FROM 
             tblAssetMain AS A1 
             INNER JOIN tblMaster_SubCategory AS A2 
@@ -71,7 +71,7 @@ export class CheckperiodService {
             AND (A1.AnnualCheckStatus IN ('Ok', 'Wait')) 
             AND (A1.Status IN ('Active', 'In Stock'));
         `,
-        [data.halfName, data.workYear]
+        [data.halfName, data.workYear]  // binding the parameters
       );
 
       await queryRunner.commitTransaction();
