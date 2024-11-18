@@ -50,22 +50,18 @@ export class CheckperiodService {
     await queryRunner.startTransaction();
 
     try {
-      // Log the parameters
-      console.log('Parameters:', { halfName: data.halfName, workYear: data.workYear });
-
       // Insert data into Checkperiod (Header Table)
-      const headerResult = await queryRunner.manager.save(Checkperiod, data);
-      console.log('Header insert result:', headerResult);
+      await queryRunner.manager.save(Checkperiod, data);
 
-      // Insert data into CheckperiodDetail
-      const detailResult = await queryRunner.manager.query(
+      // Insert data into CheckperiodDetail using raw SQL
+      await queryRunner.manager.query(
         `
         INSERT INTO tblCheck_Period_Detail (EDP_No, Status, halfName, workYear)
         SELECT 
             A1.EDP_No, 
             A1.AnnualCheckStatus, 
-            $1, 
-            $2
+            ${data.halfName},
+            ${data.workYear}
         FROM 
             tblAssetMain AS A1 
             INNER JOIN tblMaster_SubCategory AS A2 
@@ -75,20 +71,17 @@ export class CheckperiodService {
             AND (A1.AnnualCheckStatus IN ('Ok', 'Wait')) 
             AND (A1.Status IN ('Active', 'In Stock'));
         `,
-        [data.halfName, data.workYear]
+        [data.halfName, data.workYear]  // Pass parameters (halfName, workYear) as an array
       );
-      console.log('Detail insert result:', detailResult);
 
       await queryRunner.commitTransaction();
 
       return {
         status: "ok",
         msg: "Submit transaction successful",
-        headerResult,
-        detailResult
       };
     } catch (error) {
-      console.error('Transaction error:', error);
+      // Rollback transaction in case of failure
       await queryRunner.rollbackTransaction();
       throw new Error(`Transaction failed: ${error.message}`);
     } finally {

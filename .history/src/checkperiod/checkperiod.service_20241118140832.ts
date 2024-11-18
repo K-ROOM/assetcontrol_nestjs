@@ -50,50 +50,65 @@ export class CheckperiodService {
     await queryRunner.startTransaction();
 
     try {
-      // Log the parameters
-      console.log('Parameters:', { halfName: data.halfName, workYear: data.workYear });
+      // 1. Insert data into Checkperiod (Header Table)
+      const checkPeriod = await queryRunner.manager.save(Checkperiod, data);
 
-      // Insert data into Checkperiod (Header Table)
-      const headerResult = await queryRunner.manager.save(Checkperiod, data);
-      console.log('Header insert result:', headerResult);
-
-      // Insert data into CheckperiodDetail
-      const detailResult = await queryRunner.manager.query(
-        `
-        INSERT INTO tblCheck_Period_Detail (EDP_No, Status, halfName, workYear)
+      // 2. Insert data into CheckperiodDetail using raw SQL with parameters
+      const insertDetailQuery = `
+        INSERT INTO tblCheck_Period_Detail (
+          EDP_No, 
+          Status, 
+          halfName, 
+          workYear,
+          checkPeriodID  -- เพิ่ม foreign key ถ้าจำเป็น
+        )
         SELECT 
-            A1.EDP_No, 
-            A1.AnnualCheckStatus, 
-            $1, 
-            $2
+          A1.EDP_No, 
+          A1.AnnualCheckStatus, 
+          $1,  -- Parameter for halfName
+          $2,  -- Parameter for workYear
+          $3   -- Parameter for checkPeriodID (ถ้าต้องการ link กับ header)
         FROM 
-            tblAssetMain AS A1 
-            INNER JOIN tblMaster_SubCategory AS A2 
+          tblAssetMain AS A1 
+          INNER JOIN tblMaster_SubCategory AS A2 
             ON A1.SubCategory = A2.SubCategory
         WHERE 
-            (A2.AnnualCheck = 1) 
-            AND (A1.AnnualCheckStatus IN ('Ok', 'Wait')) 
-            AND (A1.Status IN ('Active', 'In Stock'));
-        `,
-        [data.halfName, data.workYear]
-      );
-      console.log('Detail insert result:', detailResult);
+          A2.AnnualCheck = 1 
+          AND A1.AnnualCheckStatus IN ('Ok', 'Wait') 
+          AND A1.Status IN ('Active', 'In Stock')`;
+
+      await queryRunner.query(insertDetailQuery, [
+        data.halfName,
+        data.workYear,
+        checkPeriod.id  // ถ้าต้องการ link กับ header
+      ]);
 
       await queryRunner.commitTransaction();
 
       return {
-        status: "ok",
-        msg: "Submit transaction successful",
-        headerResult,
-        detailResult
+        status: "success",
+        message: "Transaction completed successfully",
+        data: {
+          checkPeriodId: checkPeriod.id,
+          halfName: data.halfName,
+          workYear: data.workYear
+        }
       };
+
     } catch (error) {
-      console.error('Transaction error:', error);
       await queryRunner.rollbackTransaction();
-      throw new Error(`Transaction failed: ${error.message}`);
+      
+      // ปรับปรุง error handling
+      throw new HttpException({
+        status: "error",
+        message: "Failed to create history transaction",
+        error: error.message
+      }, HttpStatus.INTERNAL_SERVER_ERROR);
+
     } finally {
+      // ปล่อย connection กลับคืนสู่ pool
       await queryRunner.release();
     }
-  }
+}
 
 }
