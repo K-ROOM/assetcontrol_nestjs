@@ -24,6 +24,6 @@ export class Checkperiod {
   @Column({ default: false })
   uploaded: boolean = false;
 
-  @OneToMany(() => CheckperiodDetail, (checkperiodDetail) => checkperiodDetail.checkperiod)
-  checkperiodDetail: CheckperiodDetail[];
+  @OneToMany(() => CheckperiodDetail, (detail) => checkperiodDe.checkperiod)
+  details: CheckperiodDetail[];
 }
