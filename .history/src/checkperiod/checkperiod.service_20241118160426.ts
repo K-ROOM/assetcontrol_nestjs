@@ -66,12 +66,10 @@ export class CheckperiodService {
             (A1.Status IN ('Active', 'In Stock'));
     `;
 
-    const parameters: any = {
+    return this.checkPeriodRepository.manager.query(query, {
         halfName: data.halfName,
         workYear: data.workYear,
-    };
-
-    return this.checkPeriodRepository.query(query, parameters);
+    });
 }
 
 

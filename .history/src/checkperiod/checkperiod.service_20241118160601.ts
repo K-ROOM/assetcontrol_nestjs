@@ -66,7 +66,7 @@ export class CheckperiodService {
             (A1.Status IN ('Active', 'In Stock'));
     `;
 
-    const parameters: any = {
+    const parameters = {
         halfName: data.halfName,
         workYear: data.workYear,
     };
