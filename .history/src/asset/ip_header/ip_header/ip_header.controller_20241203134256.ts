@@ -30,7 +30,7 @@ export class IpHeaderController {
   }
 
   @Get('/findbybranch')
-  findAllSelecColWithBranchCode(@Query('branchCode') branchCode: string) {
+  findAllSelectColWithBranchCode(@Query('branchCode') branchCode: string) {
     return this.ipHeaderService.findAllSelecColWithBranchCode(branchCode);
   }
 

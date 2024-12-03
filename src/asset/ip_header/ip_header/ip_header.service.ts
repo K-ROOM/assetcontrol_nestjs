@@ -41,7 +41,7 @@ export class IpHeaderService {
       .getRawMany();
   }
 
-  async findAllSelecColWithBranchCode(branchCode): Promise<any[]> {
+  async findAllSelectColWithBranchCode(branchCode): Promise<any[]> {
     return await this.ipRepository
       .createQueryBuilder('ipHeader')
       .leftJoinAndSelect('ipHeader.assetHeader', 'assetHeader')

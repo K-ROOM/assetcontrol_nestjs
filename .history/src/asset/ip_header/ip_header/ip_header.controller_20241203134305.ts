@@ -19,7 +19,7 @@ export class IpHeaderController {
     return this.ipHeaderService.findAll();
   }
 
-  @Get()
+  @Get('/allasc')
   findAllWithASC() {
     return this.ipHeaderService.findAllWithASC();
   }
@@ -30,8 +30,8 @@ export class IpHeaderController {
   }
 
   @Get('/findbybranch')
-  findAllSelecColWithBranchCode(@Query('branchCode') branchCode: string) {
-    return this.ipHeaderService.findAllSelecColWithBranchCode(branchCode);
+  findAllSelectColWithBranchCode(@Query('branchCode') branchCode: string) {
+    return this.ipHeaderService.findAllSelectColWithBranchCode(branchCode);
   }
 
   // @Get('/:edp_No')
