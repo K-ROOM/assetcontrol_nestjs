@@ -83,7 +83,7 @@ export class IpHeaderService {
   }
 
   update(ip1: number, ip2: number, ip3: number, ip4: number, edp_No: string) {
-    console.log(ip1, ip2, ip3, ip4, edp_No)
+    console.log(ip1, edp_No)
     const entityManager = this.ipRepository.manager
     return this.ipRepository.query(`
     UPDATE tblIPAddress_Status

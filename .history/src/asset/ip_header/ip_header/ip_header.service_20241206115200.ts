@@ -82,14 +82,14 @@ export class IpHeaderService {
     });
   }
 
-  update(ip1: number, ip2: number, ip3: number, ip4: number, edp_No: string) {
-    console.log(ip1, ip2, ip3, ip4, edp_No)
-    const entityManager = this.ipRepository.manager
-    return this.ipRepository.query(`
-    UPDATE tblIPAddress_Status
-    SET EDP_No = '${edp_No}'
-    WHERE (IP1 = ${ip1}) AND (IP2 = ${ip2}) AND (IP3 = ${ip3}) AND (IP4 = ${ip4})`);
-  }
+  // update(ip1: number, ip2: number, ip3: number, ip4: number, edp_No: string) {
+  //   console.log(edp_No)
+  //   const entityManager = this.ipRepository.manager
+  //   return this.ipRepository.query(`
+  //   UPDATE tblIPAddress_Status
+  //   SET EDP_No = '${edp_No}'
+  //   WHERE (IP1 = ${ip1}) AND (IP2 = ${ip2}) AND (IP3 = ${ip3}) AND (IP4 = ${ip4})`);
+  // }
 
   // async update(ip1: number, ip2: number, ip3: number, ip4: number, edp_No: string) {
   //   await this.ipRepository.createQueryBuilder()
