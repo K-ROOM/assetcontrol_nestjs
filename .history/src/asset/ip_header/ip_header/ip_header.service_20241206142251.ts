@@ -91,7 +91,7 @@ export class IpHeaderService {
         WHERE IP1 = ${oip1} AND IP2 = ${oip2} AND IP3 = ${oip3} AND IP4 = ${oip4};
     `;
 
-    const updateNewIP = `
+    const updateNewIP = `โ
         UPDATE tblIPAddress_Status
         SET EDP_No = '${edp_No}'
         WHERE IP1 = ${ip1} AND IP2 = ${ip2} AND IP3 = ${ip3} AND IP4 = ${ip4};

@@ -85,22 +85,25 @@ export class IpHeaderService {
   update(ip1: number, ip2: number, ip3: number, ip4: number, edp_No: string, oip1: number, oip2: number, oip3: number, oip4: number) {
     const entityManager = this.ipRepository.manager;
 
+    // 1. Set EDP_No เป็น NULL สำหรับ IP เก่า
     const updateOldIP = `
         UPDATE tblIPAddress_Status
         SET EDP_No = NULL
         WHERE IP1 = ${oip1} AND IP2 = ${oip2} AND IP3 = ${oip3} AND IP4 = ${oip4};
     `;
 
-    const updateNewIP = `
+    // 2. Set EDP_No เป็นค่าที่ใหม่ สำหรับ IP ใหม่
+    const updateNewIP = `โ
         UPDATE tblIPAddress_Status
         SET EDP_No = '${edp_No}'
         WHERE IP1 = ${ip1} AND IP2 = ${ip2} AND IP3 = ${ip3} AND IP4 = ${ip4};
     `;
 
+    // ทำการ execute คำสั่งทั้งสอง
     return this.ipRepository.query(updateOldIP).then(() => {
-    return this.ipRepository.query(updateNewIP);
+        return this.ipRepository.query(updateNewIP);
     });
-  }
+}
 
   // async update(ip1: number, ip2: number, ip3: number, ip4: number, edp_No: string) {
   //   await this.ipRepository.createQueryBuilder()
