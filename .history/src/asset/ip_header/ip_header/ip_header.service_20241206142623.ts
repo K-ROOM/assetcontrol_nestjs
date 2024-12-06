@@ -93,7 +93,7 @@ export class IpHeaderService {
 
     const updateNewIP = `
         UPDATE tblIPAddress_Status
-        SET EDP_No = '${edp_No}', Status = 'Active'
+        SET EDP_No = '${edp_No}', Status = ''
         WHERE IP1 = ${ip1} AND IP2 = ${ip2} AND IP3 = ${ip3} AND IP4 = ${ip4};
     `;
 

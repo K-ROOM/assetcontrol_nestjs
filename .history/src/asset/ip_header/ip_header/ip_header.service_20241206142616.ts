@@ -87,13 +87,13 @@ export class IpHeaderService {
 
     const updateOldIP = `
         UPDATE tblIPAddress_Status
-        SET EDP_No = NULL, Status = 'Empty'
+        SET EDP_No = NULL, Status = ''
         WHERE IP1 = ${oip1} AND IP2 = ${oip2} AND IP3 = ${oip3} AND IP4 = ${oip4};
     `;
 
     const updateNewIP = `
         UPDATE tblIPAddress_Status
-        SET EDP_No = '${edp_No}', Status = 'Active'
+        SET EDP_No = '${edp_No}'
         WHERE IP1 = ${ip1} AND IP2 = ${ip2} AND IP3 = ${ip3} AND IP4 = ${ip4};
     `;
 
