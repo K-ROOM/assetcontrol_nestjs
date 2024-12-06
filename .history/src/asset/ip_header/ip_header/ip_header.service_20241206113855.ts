@@ -91,17 +91,6 @@ export class IpHeaderService {
   //   WHERE (IP1 = ${ip1}) AND (IP2 = ${ip2}) AND (IP3 = ${ip3}) AND (IP4 = ${ip4})`);
   // }
 
-  async update(ip1: number, ip2: number, ip3: number, ip4: number, edp_No: string) {
-    await this.ipRepository.createQueryBuilder()
-      .update('tblIPAddress_Status')
-      .set({ EDP_No: edp_No })
-      .where('IP1 = :ip1', { ip1 })
-      .andWhere('IP2 = :ip2', { ip2 })
-      .andWhere('IP3 = :ip3', { ip3 })
-      .andWhere('IP4 = :ip4', { ip4 })
-      .execute();
-  }
-
   remove(id: number) {
     return `This action removes a #${id} ipHeader`;
   }

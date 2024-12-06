@@ -93,8 +93,8 @@ export class IpHeaderService {
 
   async update(ip1: number, ip2: number, ip3: number, ip4: number, edp_No: string) {
     await this.ipRepository.createQueryBuilder()
-      .update('tblIPAddress_Status')
-      .set({ EDP_No: edp_No })
+      .update('tblIPAddress_Status') // ชื่อ table
+      .set({ EDP_No: edp_No }) // กำหนดค่าใหม่
       .where('IP1 = :ip1', { ip1 })
       .andWhere('IP2 = :ip2', { ip2 })
       .andWhere('IP3 = :ip3', { ip3 })
