@@ -49,7 +49,7 @@ export class AuthService {
       message: 'Token is refreshed successfully!',
       accessToken: this.jwtService.sign(payload),
       accessTokenExpiresIn: '10',
-      refreshToken: this.jwtService.sign(payload, { expiresIn: '21s' }),
+      refreshToken: this.jwtService.sign(payload, { expiresIn: '21' }),
     };
   }
 }
