@@ -82,7 +82,7 @@ export class IpHeaderService {
     });
   }
 
-  async update1(ip1: number, ip2: number, ip3: number, ip4: number, edp_No: string) {
+  async update(ip1: number, ip2: number, ip3: number, ip4: number, edp_No: string) {
     await this.ipRepository.createQueryBuilder()
       .update('tblIPAddress_Status')
       .set({ EDP_No: edp_No })

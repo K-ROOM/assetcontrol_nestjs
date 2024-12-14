@@ -82,16 +82,16 @@ export class IpHeaderService {
     });
   }
 
-  async update1(ip1: number, ip2: number, ip3: number, ip4: number, edp_No: string) {
-    await this.ipRepository.createQueryBuilder()
-      .update('tblIPAddress_Status')
-      .set({ EDP_No: edp_No })
-      .where('IP1 = :ip1', { ip1 })
-      .andWhere('IP2 = :ip2', { ip2 })
-      .andWhere('IP3 = :ip3', { ip3 })
-      .andWhere('IP4 = :ip4', { ip4 })
-      .execute();
-  }
+  // async update(ip1: number, ip2: number, ip3: number, ip4: number, edp_No: string) {
+  //   await this.ipRepository.createQueryBuilder()
+  //     .update('tblIPAddress_Status')
+  //     .set({ EDP_No: edp_No })
+  //     .where('IP1 = :ip1', { ip1 })
+  //     .andWhere('IP2 = :ip2', { ip2 })
+  //     .andWhere('IP3 = :ip3', { ip3 })
+  //     .andWhere('IP4 = :ip4', { ip4 })
+  //     .execute();
+  // }
 
   update2(ip1: number, ip2: number, ip3: number, ip4: number, edp_No: string, oip1: number, oip2: number, oip3: number, oip4: number) {
     const entityManager = this.ipRepository.manager;

@@ -25,13 +25,13 @@ export class IpHeaderController {
   }
 
   @Patch('/:ip1/:ip2/:ip3/:ip4/:edp_No')
-  update1(@Param('ip1') ip1: number, @Param('ip2') ip2: number, @Param('ip3') ip3: number, @Param('ip4') ip4: number, @Param('edp_No') edp_No: string) {
-    return this.ipHeaderService.update1(ip1, ip2, ip3, ip4, edp_No);
+  update(@Param('ip1') ip1: number, @Param('ip2') ip2: number, @Param('ip3') ip3: number, @Param('ip4') ip4: number, @Param('edp_No') edp_No: string) {
+    return this.ipHeaderService.update(ip1, ip2, ip3, ip4, edp_No, oip1, oip2, oip3, oip4);
   }
 
   @Patch('/:ip1/:ip2/:ip3/:ip4/:edp_No/:oip1/:oip2/:oip3/:oip4')
-  update2(@Param('ip1') ip1: number, @Param('ip2') ip2: number, @Param('ip3') ip3: number, @Param('ip4') ip4: number, @Param('edp_No') edp_No: string, @Param('oip1') oip1: number, @Param('oip2') oip2: number, @Param('oip3') oip3: number, @Param('oip4') oip4: number) {
-    return this.ipHeaderService.update2(ip1, ip2, ip3, ip4, edp_No, oip1, oip2, oip3, oip4);
+  update(@Param('ip1') ip1: number, @Param('ip2') ip2: number, @Param('ip3') ip3: number, @Param('ip4') ip4: number, @Param('edp_No') edp_No: string, @Param('oip1') oip1: number, @Param('oip2') oip2: number, @Param('oip3') oip3: number, @Param('oip4') oip4: number) {
+    return this.ipHeaderService.update(ip1, ip2, ip3, ip4, edp_No, oip1, oip2, oip3, oip4);
   }
 
   @Get('/findbybranch')
