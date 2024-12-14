@@ -86,15 +86,19 @@ export class IpHeaderService {
     const assetExists = await this.ipRepository.query(`
         SELECT 1 FROM tblAssetMain WHERE EDP_No = '${edp_No}'
     `);
+
     if (assetExists.length === 0) {
-      throw new Error('EDP_No does not exist in tblAssetMain');
+        throw new Error('EDP_No does not exist in tblAssetMain');
     }
+
+    // อัปเดตค่า EDP_No และ Status
     return this.ipRepository.query(`
         UPDATE tblIPAddress_Status
         SET EDP_No = '${edp_No}', Status = 'Active'
         WHERE IP1 = ${ip1} AND IP2 = ${ip2} AND IP3 = ${ip3} AND IP4 = ${ip4};
     `);
-  }
+}
+
 
   update2(ip1: number, ip2: number, ip3: number, ip4: number, edp_No: string, oip1: number, oip2: number, oip3: number, oip4: number) {
     const entityManager = this.ipRepository.manager;
@@ -112,7 +116,7 @@ export class IpHeaderService {
     `;
 
     return this.ipRepository.query(updateOldIP).then(() => {
-      return this.ipRepository.query(updateNewIP);
+    return this.ipRepository.query(updateNewIP);
     });
   }
 
