@@ -23,8 +23,7 @@ import { jwtConstants } from './constants';
     TypeOrmModule.forFeature([User], 'login'),
     JwtModule.register({
       secret: jwtConstants.secret,
-      // signOptions: { expiresIn: '3600s' },
-      signOptions: { expiresIn: '10s' },
+      signOptions: { expiresIn: '3600s' },
     }),
   ],
 })
