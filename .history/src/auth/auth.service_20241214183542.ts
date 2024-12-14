@@ -32,7 +32,7 @@ export class AuthService {
       message: 'Logged in',
       accessToken: this.jwtService.sign(payload),
       accessTokenExpiresIn: '10',
-      refreshToken: this.jwtService.sign(payload, { expiresIn: '20s' }),
+      refreshToken: this.jwtService.sign(payload, { expiresIn: '7d' }),
       user: { username: user.username, userId: user.userID },
       roles: { app: user.roles }
     };
