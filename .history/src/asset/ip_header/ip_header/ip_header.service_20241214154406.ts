@@ -83,11 +83,7 @@ export class IpHeaderService {
   }
 
   async update1(ip1: number, ip2: number, ip3: number, ip4: number, edp_No: string) {
-    await this.ipRepository.query(`
-        UPDATE tblIPAddress_Status
-        SET EDP_No = '${edp_No}', Status = 'Active'
-        WHERE IP1 = ${ip1} AND IP2 = ${ip2} AND IP3 = ${ip3} AND IP4 = ${ip4};
-    `);
+    await this.ipRepository.query()
   }
 
   update2(ip1: number, ip2: number, ip3: number, ip4: number, edp_No: string, oip1: number, oip2: number, oip3: number, oip4: number) {
