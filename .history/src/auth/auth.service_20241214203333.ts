@@ -32,7 +32,7 @@ export class AuthService {
       message: 'Logged in',
       accessToken: this.jwtService.sign(payload),
       accessTokenExpiresIn: '3600',
-      refreshToken: this.jwtService.sign(payload, { expiresIn: '7d' }),
+      refreshToken: this.jwtService.sign(payload, { expiresIn: '20s' }),
       user: { username: user.username, userId: user.userID },
       roles: { app: user.roles }
     };
@@ -49,7 +49,7 @@ export class AuthService {
       message: 'Token is refreshed successfully!',
       accessToken: this.jwtService.sign(payload),
       accessTokenExpiresIn: '3600',
-      refreshToken: this.jwtService.sign(payload, { expiresIn: '7d' }),
+      refreshToken: this.jwtService.sign(payload, { expiresIn: '20s' }),
     };
   }
 }
