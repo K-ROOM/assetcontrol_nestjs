@@ -19,7 +19,11 @@ export class CheckperiodService {
   }
 
   findAll() {
-    return this.checkPeriodRepository.find();
+    return this.assetRepository.find({
+      relations: {
+        ipHeader: true,
+      },
+    });
   }
 
   async findLatest(): Promise<Checkperiod | undefined> {
