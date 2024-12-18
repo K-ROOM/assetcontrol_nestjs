@@ -14,7 +14,7 @@ export class CheckperiodDetailController {
 
   @Get()
   findAll(@Param('halfName') halfName: string, @Param('workYear') workYear: string) {
-    return this.checkperiodDetailService.findAll(halfName, workYear);
+    return this.checkperiodDetailService.findAll(halfName, );
   }
 
   @Get(':id')

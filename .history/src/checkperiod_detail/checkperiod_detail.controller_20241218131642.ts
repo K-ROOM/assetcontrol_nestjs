@@ -13,8 +13,8 @@ export class CheckperiodDetailController {
   }
 
   @Get()
-  findAll(@Param('halfName') halfName: string, @Param('workYear') workYear: string) {
-    return this.checkperiodDetailService.findAll(halfName, workYear);
+  findAll(@Param('id') id: string, @Param('id') id: string) {
+    return this.checkperiodDetailService.findAll();
   }
 
   @Get(':id')

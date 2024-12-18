@@ -9,16 +9,22 @@ import { Repository } from 'typeorm';
 export class CheckperiodDetailService {
   constructor(
     @InjectRepository(CheckperiodDetail)
-    private readonly rmsInternshipRepository: Repository<CheckperiodDetail>,
+    private readonly checkperiodDetailRepository: Repository<CheckperiodDetail>,
   ) {}
   
   create(createCheckperiodDetailDto: CreateCheckperiodDetailDto) {
-    return 'This action adds a new checkperiodDetail';
+    return this.checkperiodRepository.save(createCheckperiodDetailDto);
   }
 
-  findAll() {
-    return `This action returns all checkperiodDetail`;
+  findAll(halfName: string, workYear: string) {
+    return this.checkperiodRepository.find({
+      where: {
+        HalfName: halfName,
+        WorkYear: workYear,
+      },
+    });
   }
+  
 
   findOne(id: number) {
     return `This action returns a #${id} checkperiodDetail`;
