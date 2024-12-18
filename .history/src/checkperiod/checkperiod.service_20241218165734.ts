@@ -59,16 +59,16 @@ export class CheckperiodService {
   //     await queryRunner.manager.save(Checkperiod, data);
 
   //     // Insert data into CheckperiodDetail using raw SQL
-      // await queryRunner.manager.query(`
-      //   INSERT INTO tblCheck_Period_Detail (EDP_No, Status, halfName, workYear)
-      //   SELECT A1.EDP_No, A1.AnnualCheckStatus, @0, @1
-      //   FROM tblAssetMain AS A1 
-      //   INNER JOIN tblMaster_SubCategory AS A2 
-      //   ON A1.SubCategory = A2.SubCategory
-      //   WHERE (A2.AnnualCheck = 1) 
-      //   AND (A1.AnnualCheckStatus IN ('Ok', 'Wait')) 
-      //   AND (A1.Status IN ('Active', 'In Stock'))
-      // `, [data.halfName, data.workYear]);
+  // await queryRunner.manager.query(`
+  //   INSERT INTO tblCheck_Period_Detail (EDP_No, Status, halfName, workYear)
+  //   SELECT A1.EDP_No, A1.AnnualCheckStatus, @0, @1
+  //   FROM tblAssetMain AS A1 
+  //   INNER JOIN tblMaster_SubCategory AS A2 
+  //   ON A1.SubCategory = A2.SubCategory
+  //   WHERE (A2.AnnualCheck = 1) 
+  //   AND (A1.AnnualCheckStatus IN ('Ok', 'Wait')) 
+  //   AND (A1.Status IN ('Active', 'In Stock'))
+  // `, [data.halfName, data.workYear]);
 
   //     await queryRunner.commitTransaction();
 
@@ -114,7 +114,7 @@ export class CheckperiodService {
             AND A1.AnnualCheckStatus IN ('Ok', 'Wait')
             AND A1.Status IN ('Active', 'In Stock');
       `);
-      
+
       await queryRunner.commitTransaction();
 
       return {
