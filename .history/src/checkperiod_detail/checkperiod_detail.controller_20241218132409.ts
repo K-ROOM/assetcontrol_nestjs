@@ -12,7 +12,7 @@ export class CheckperiodDetailController {
     return this.checkperiodDetailService.create(createCheckperiodDetailDto);
   }
 
-  @Get('/:halfName/:workYear')
+  @Get('/:filename/:filename')
   findAll(@Param('halfName') halfName: string, @Param('workYear') workYear: string) {
     return this.checkperiodDetailService.findAll(halfName, workYear);
   }
